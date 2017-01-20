@@ -9,12 +9,10 @@ transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.0253 )
 
 [node name="Wave" parent="." instance=ExtResource( 1 )]
 
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.39818 )
-
 [node name="Camera" type="Camera" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0586755, -0.00514698, 4.87402 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0586755, -0.00514698, 25.6476 )
 projection = 0
 fov = 60.0
 near = 0.1
