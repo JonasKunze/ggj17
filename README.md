@@ -2,4 +2,4 @@ https://etherpad.wikimedia.org/p/AwesomeWaveJump
 # ggj17
 
 ## How to use Better Collada Exporter in Blender
-Copy the folder **io_scene_dae** from https://github.com/godotengine/collada-exporter to $(HOME)/.config/blender/$(VERSION)/scripts/addons and enable the plugin in blender.
+Copy the folder **io_scene_dae** from https://github.com/godotengine/collada-exporter to $(HOME)/.config/blender/$(VERSION)/scripts/addons and enable the plugin in blender (File -> User Preferences -> Search for "Collada" and activate the plugin -> Save User Settings).
