@@ -59,4 +59,5 @@ func _process(delta):
 		for x in range(0, sizeZ):
 			var vertexId = x*sizeZ + z
 			vertices[z][x].y = sin(0.1*gameTimePassed*vertexId)
+	print(vertices[9][9])
 	createMesh()
