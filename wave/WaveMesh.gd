@@ -9,6 +9,8 @@ export var springConstant = 2
 
 var vertices = []
 
+export(Material) var material = null
+
 func _ready():
 	initVertices()
 	createMesh()
@@ -24,8 +26,8 @@ func initVertices():
 func createMesh():
 	var surfTool = SurfaceTool.new()
 	myMesh = Mesh.new()
-	var material = FixedMaterial.new()
-	material.set_parameter(material.PARAM_DIFFUSE,Color(1,0,0,1))
+	#var material = FixedMaterial.new()
+	#material.set_parameter(material.PARAM_DIFFUSE,Color(1,0,0,1))
 	  
 	surfTool.set_material(material)
 	surfTool.begin(VS.PRIMITIVE_TRIANGLES)
