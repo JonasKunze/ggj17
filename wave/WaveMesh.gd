@@ -40,10 +40,12 @@ func _process(delta):
 	gameTimePassed += delta
 	var datatool = MeshDataTool.new()
 	datatool.create_from_surface(myMesh, 0)
-	datatool.set_vertex(0, datatool.get_vertex(0) )
-	datatool.set_vertex(1, datatool.get_vertex(1) )
-	#datatool.set_vertex(2, datatool.get_vertex(2) + Vector3(1,0,-1) * sin(gameTimePassed))
-	print(datatool.get_vertex(2))
+	for x in range(0, sizeX):
+		for z in range(0, sizeZ):
+			var vertexId = x*sizeZ + z
+			var vertex = datatool.get_vertex(vertexId)
+			vertex.y = sin(gameTimePassed*vertexId)
+			datatool.set_vertex(vertexId, vertex)
 	
 	myMesh.surface_remove(0) #Remove the old one
 	datatool.commit_to_surface(myMesh)
