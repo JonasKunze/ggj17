@@ -4,8 +4,8 @@
 
 [sub_resource type="MaterialShaderGraph" id=2]
 
-_code = { "fragment":"vec3 nd1sl0=VERTEX;\nvec3 DIFFUSE_OUT=vec3(0,0,0);\nfloat ALPHA_OUT=0;\nfloat nd2sl0=nd1sl0.x;\nfloat nd2sl1=nd1sl0.y;\nfloat nd2sl2=nd1sl0.z;\nfloat nd3sl0=abs(nd2sl1);\nfloat nd4sl1def=1;\nfloat nd4sl2def=0;\nvec3 nd4sl0=vec3(nd3sl0,nd4sl1def,nd4sl2def);\nDIFFUSE_OUT=nd4sl0;\nDIFFUSE=DIFFUSE_OUT;\n", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
-_data = { "shaders":[ [ 0, 33, Vector2( 350, 40 ), null, null, [  ], 1, 0, Vector2( 50, 40 ), null, null, [  ] ], [ 0, 33, Vector2( 862, 61 ), null, null, [ 0, 4, 0 ], 1, 0, Vector2( -25, 49 ), null, null, [  ], 2, 18, Vector2( 177, 71 ), null, null, [ 0, 1, 0, 2147483647, 0, null ], 3, 14, Vector2( 349, 116 ), 12, null, [ 0, 2, 1, 2147483647, 0, null ], 4, 19, Vector2( 668, 129 ), null, null, [ 0, 3, 0, 2147483647, 0, null, 2147483647, 1, 1.0, 2147483647, 2, null ] ], [ 0, 33, Vector2( 350, 40 ), null, null, [  ], 1, 0, Vector2( 50, 40 ), null, null, [  ] ] ] }
+_code = { "fragment":"vec3 nd1sl9=COLOR.rgb;\nvec3 DIFFUSE_OUT=vec3(0,0,0);\nfloat ALPHA_OUT=0;\nDIFFUSE_OUT=nd1sl9;\nDIFFUSE=DIFFUSE_OUT;\n", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"vec3 nd1sl0=SRC_VERTEX;\nfloat nd2sl0=nd1sl0.x;\nfloat nd2sl1=nd1sl0.y;\nfloat nd2sl2=nd1sl0.z;\nfloat nd4sl0=abs(nd2sl1);\nfloat nd3sl1def=1;\nfloat nd3sl2def=0;\nvec3 nd3sl0=vec3(nd4sl0,nd3sl1def,nd3sl2def);\nCOLOR.rgb=nd3sl0;\n", "vertex_ofs":0 }
+_data = { "shaders":[ [ 0, 33, Vector2( 1091, 74 ), null, null, [ 6, 3, 0 ], 1, 0, Vector2( 153, 118 ), null, null, [  ], 2, 18, Vector2( 398, 134 ), null, null, [ 0, 1, 0, 2147483647, 0, null ], 3, 19, Vector2( 815, 181 ), null, null, [ 0, 4, 0, 2147483647, 0, null, 2147483647, 1, 1.0, 2147483647, 2, null ], 4, 14, Vector2( 649, 245 ), 12, null, [ 0, 2, 1, 2147483647, 0, null ] ], [ 0, 33, Vector2( 862, 61 ), null, null, [ 0, 1, 9 ], 1, 0, Vector2( 30, 86 ), null, null, [  ] ], [ 0, 33, Vector2( 350, 40 ), null, null, [  ], 1, 0, Vector2( 50, 40 ), null, null, [  ] ] ] }
 
 [sub_resource type="ShaderMaterial" id=3]
 
@@ -82,8 +82,8 @@ geometry/baked_light_tex_id = 0
 mesh/mesh = null
 mesh/skeleton = NodePath("..")
 script/script = ExtResource( 1 )
-sizeX = 10
-sizeZ = 10
+sizeX = 50
+sizeZ = 50
 springConstant = 2
 material = SubResource( 3 )
 
