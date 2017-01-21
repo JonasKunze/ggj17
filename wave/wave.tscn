@@ -7,7 +7,7 @@
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00707388, -0.0180893, 0.0167327 )
 script/script = ExtResource( 1 )
-sizeX = 75
+sizeX = 50
 sizeZ = 50
 material = null
 
