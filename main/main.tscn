@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://enemy/enemySpawner.gd" type="Script" id=1]
 [ext_resource path="res://wave/wave.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://enemy/pumpkin.scn" type="PackedScene" id=4]
 [ext_resource path="res://snow/snow.tscn" type="PackedScene" id=5]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://goals/goals.tscn" type="PackedScene" id=7]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -110,5 +111,9 @@ transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27055, 4.75606 )
 
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0105934, 1.27198, -3.48092 )
 playerNumber = 1
+
+[node name="Goals" parent="." instance=ExtResource( 7 )]
+
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.19209e-07, 0 )
 
 
