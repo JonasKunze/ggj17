@@ -84,6 +84,7 @@ func _fixed_process(delta):
 func _ready():
 	set_fixed_process(true)
 	set_process_input(true)
+	self.get_node("Beam").get_material_override().set_shader_param("BeamColor", Vector3(0, 1, 0))
 	
 	key_up = "ui_up" + str(playerNumber)
 	key_down = "ui_down" + str(playerNumber)

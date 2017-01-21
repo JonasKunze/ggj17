@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/snowman.scn" type="PackedScene" id=2]
@@ -6,6 +6,27 @@
 [sub_resource type="BoxShape" id=1]
 
 extents = Vector3( 1, 1, 1 )
+
+[sub_resource type="MaterialShaderGraph" id=2]
+
+_code = { "fragment":"vec3 DIFFUSE_OUT=vec3(0,0,0);\nfloat ALPHA_OUT=0;\nuniform vec3 BeamColor=vec3(0,0,1);\nvec3 nd3sl0=BeamColor;\nuniform float Alpha=0.5;\nfloat nd2sl0=Alpha;\nDIFFUSE_OUT=nd3sl0;\nALPHA_OUT=nd2sl0;\nDIFFUSE_ALPHA=vec4(DIFFUSE_OUT,ALPHA_OUT);\n", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
+_data = { "shaders":[ [ 0, 33, Vector2( 774, 64 ), null, null, [  ], 1, 0, Vector2( 50, 40 ), null, null, [  ] ], [ 0, 33, Vector2( 824, 70 ), null, null, [ 0, 3, 0, 1, 2, 0 ], 1, 0, Vector2( 50, 40 ), null, null, [  ], 2, 26, Vector2( 486, 224 ), "Alpha", 0.5, [  ], 3, 27, Vector2( 318, 54 ), "BeamColor", Vector3( 0, 0, 1 ), [  ] ], [ 0, 33, Vector2( 350, 40 ), null, null, [  ], 1, 0, Vector2( 50, 40 ), null, null, [  ] ] ] }
+
+[sub_resource type="ShaderMaterial" id=3]
+
+flags/visible = true
+flags/double_sided = false
+flags/invert_faces = false
+flags/unshaded = true
+flags/on_top = false
+flags/lightmap_on_uv2 = false
+flags/colarray_is_srgb = false
+params/blend_mode = 0
+params/depth_draw = 1
+params/line_width = 0.0
+shader/shader = SubResource( 2 )
+shader_param/BeamColor = null
+shader_param/Alpha = 0.1
 
 [node name="Spatial" type="Spatial"]
 
@@ -35,6 +56,25 @@ playerGravity = 35.0
 [node name="snowman" parent="player" instance=ExtResource( 2 )]
 
 transform/local = Transform( 0.49, 0, 0, 0, 0.49, 0, 0, 0, 0.49, 0, 0, 0 )
+
+[node name="Beam" type="TestCube" parent="player"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.1, 0, 0, 0, 50, 0, 0, 0, 0.1, 0, 52, 0 )
+layers = 1
+geometry/visible = true
+geometry/material_override = SubResource( 3 )
+geometry/cast_shadow = 0
+geometry/receive_shadows = false
+geometry/range_begin = 0.0
+geometry/range_end = 0.0
+geometry/extra_cull_margin = 0.0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
 
 [node name="Camera" type="Camera" parent="."]
 
