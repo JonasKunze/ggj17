@@ -41,7 +41,7 @@ func createMesh():
 	myMesh = Mesh.new()
 	#var material = FixedMaterial.new()
 	#material.set_parameter(material.PARAM_DIFFUSE,Color(1,0,0,1))
-	  
+  
 	surfTool.set_material(material)
 	surfTool.begin(VS.PRIMITIVE_TRIANGLES)
 	
@@ -77,17 +77,8 @@ func _process(deltaT):
 				for j in range(-1, 2):
 					if abs(i) + abs(j) == 2:
 						force += 0.707* (lastVertices[z+i][x+j].y - currentY)
-						
 					else:
 						force += lastVertices[z+i][x+j].y - currentY
-						
-					
-			print(force)
-			#var north = lastVertices[z+1][x].y - currentY
-			#var east = lastVertices[z][x+1].y - currentY
-			#var south = lastVertices[z-1][x].y - currentY
-			#var west = lastVertices[z][x-1].y - currentY
-			#var force = springConstant * (north+east+south+west) * (1-friction)
 			
 			force *= springConstant * (1-friction)
 			
