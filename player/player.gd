@@ -4,7 +4,7 @@ extends KinematicBody
 # var a = 2
 # var b = "textvar"
 
-var playerNumber = 0
+export var playerNumber = 0
 export var speed = 10
 export var jumpSpeed = 4
 export var playerGravity = 9.81
@@ -21,7 +21,7 @@ var key_stomp = ""
 var jumped = false
 
 func _input(event):
-	var snowmanAnimationPlayer = get_node("snowman/AnimationPlayer")
+	var snowmanAnimationPlayer = get_node("snowman_mesh/AnimationPlayer")
 	if event.is_action_pressed(key_left) or event.is_action_pressed(key_right)  or event.is_action_pressed(key_up)  or event.is_action_pressed(key_down):
 		keyPressCounter += 1
 		snowmanAnimationPlayer.play("hop")
