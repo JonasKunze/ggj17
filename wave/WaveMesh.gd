@@ -6,8 +6,8 @@ var gameTimePassed = 0
 export var sizeX = 2
 export var sizeZ = 2
 var springConstant = 5
-var friction = 0.9
-var maxAmplitude = 1
+var friction = 0.5
+var maxAmplitude = 10
 
 var boxes = []
 var velocities = []
@@ -57,7 +57,6 @@ func _process(deltaT):
 	#lastVertices[sizeZ/2][sizeX/2] = Vector3(0, -10, 0)
 	#velocities[sizeZ/2][sizeX/2] = 0
 	
-	var tsquareHalf = deltaT * deltaT / 2.0
 	for z in range(1, sizeX-1):
 		for x in range(1, sizeZ-1):
 			var force = 0
@@ -71,12 +70,14 @@ func _process(deltaT):
 					else:
 						force += difference
 
+			force = force * springConstant - velocities[z][x] * friction
+			
+			velocities[z][x] += force * deltaT  
+			
 			var currentPos = boxes[z][x].get_translation()
-			force *= springConstant * (1-friction)
 			currentPos.y += velocities[z][x] * deltaT
 		
 			boxes[z][x].set_translation(currentPos)
-			velocities[z][x] += force*deltaT
 			
 	for z in range(1, sizeX-1):
 		for x in range(1, sizeZ-1):
