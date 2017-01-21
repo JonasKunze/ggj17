@@ -17,12 +17,10 @@ void SphericalWaves::init(int xSize, int ySize, double springConstant, double fr
 	nextAmplitudes = new double[xSize * ySize];
 	currentAmplitudes = new double[xSize * ySize];
 	velocities = new double[xSize * ySize];
-	for (int x = 0; x < xSize; ++x) {
-		for (int y = 0; y < ySize; ++y) {
-			currentAmplitudes[x * ySize + y] = 0.0;
-			nextAmplitudes[x * ySize + y] = 0.0;
-			velocities[x * ySize + y] = 0.0;
-		}
+	for (int i = 0; i < xSize * ySize; ++i) {
+		currentAmplitudes[i] = 0.0;
+		nextAmplitudes[i] = 0.0;
+		velocities[i] = 0.0;
 	}
 }
 
