@@ -1,5 +1,6 @@
 #include "sphericalWaves.h"
 #include <cmath>
+#include <stdlib.h>
 
 SphericalWaves::SphericalWaves() {
 	twoSquareHalf = sqrt(2) / 2;
