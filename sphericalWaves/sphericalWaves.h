@@ -13,7 +13,7 @@ class SphericalWaves : public Reference {
 	double* nextAmplitudes;
 	double* velocities;
 	int xSize, ySize;
-	double amplifier, twoSquareHalf;
+	double springConstant, friction, twoSquareHalf;
 protected:
 	static void _bind_methods();
 public:
