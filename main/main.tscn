@@ -10,14 +10,14 @@ extents = Vector3( 1, 1, 1 )
 [node name="Spatial" type="Spatial"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.0253 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.901434, 0 )
 
 [node name="Wave" parent="." instance=ExtResource( 1 )]
 
 [node name="Camera" type="Camera" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 0.935094, 0.354399, 0, -0.354399, 0.935094, 1.54659, 22.5382, 23.8047 )
+transform/local = Transform( 1, 0, 0, 0, 0.766044, 0.642787, 0, -0.642787, 0.766044, 0, 30, 38.6108 )
 projection = 0
 fov = 60.0
 near = 0.1
@@ -54,8 +54,6 @@ shadow/split_weight = 0.5
 shadow/zoffset_scale = 2.0
 
 [node name="Player1" parent="." instance=ExtResource( 2 )]
-
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.11036, 0 )
 
 [node name="Ball" type="RigidBody" parent="."]
 

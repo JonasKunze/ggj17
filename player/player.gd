@@ -9,6 +9,8 @@ export var jumpSpeed = 4
 var velocity = Vector3()
 var keyPressCounter = 0
 
+var jumped = false
+
 func _input(event):
 	var snowmanAnimationPlayer = get_node("snowman/AnimationPlayer")
 	if event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right")  or event.is_action_pressed("ui_up")  or event.is_action_pressed("ui_down"):
@@ -20,10 +22,6 @@ func _input(event):
 		snowmanAnimationPlayer.get_animation("hop").set_loop(true)
 	else:
 		snowmanAnimationPlayer.get_animation("hop").set_loop(false)
-
-export var jumpTimeout_s = 2
-var jumped = false
-var lastJumpTime = 0
 
 func _fixed_process(delta):
 	if (Input.is_action_pressed("ui_left")):
@@ -50,15 +48,17 @@ func _fixed_process(delta):
 		var n = get_collision_normal()
 		motion = n.slide(motion)
 		velocity = n.slide(velocity)
+		if n.y==0:
+			motion += Vector3(0, 0.1, 0)
 		move(motion)
 		
 		if jumped:
-			get_node("/root/Spatial/Wave").stomp(get_translation())
+			var stompCenter = get_node("/root/Spatial/Wave").stomp(get_translation())
+			set_translation(stompCenter)
 		
-		if Input.is_action_pressed("ui_jump") && OS.get_unix_time()-lastJumpTime > jumpTimeout_s:
+		if Input.is_action_pressed("ui_jump"):
 			jumped = true
 			velocity.y = jumpSpeed
-			lastJumpTime = OS.get_unix_time()
 		else:
 			jumped = false
 			
