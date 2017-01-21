@@ -7,6 +7,7 @@ extends KinematicBody
 var playerNumber = 0
 export var speed = 10
 export var jumpSpeed = 4
+export var playerGravity = 9.81
 var velocity = Vector3()
 var keyPressCounter = 0
 
@@ -15,6 +16,7 @@ var key_down = ""
 var key_left = ""
 var key_right = ""
 var key_jump = ""
+var key_stomp = ""
 
 var jumped = false
 
@@ -57,9 +59,16 @@ func _fixed_process(delta):
 		velocity = n.slide(velocity)
 		if n.y==0:
 			motion += Vector3(0, 0.1, 0)
-		move(motion)
 		
-		if jumped:
+		if self.get_translation().y < 0:
+			var newPos = self.get_translation()
+			newPos.y = 0
+			self.set_translation(newPos)
+		
+		motion += Vector3(0, 0.1, 0)
+		move(motion)
+			
+		if Input.is_action_pressed(key_stomp):
 			var stompCenter = get_node("/root/Spatial/Wave").stomp(get_translation())
 			set_translation(stompCenter)
 		
@@ -70,7 +79,7 @@ func _fixed_process(delta):
 			jumped = false
 			
 	
-	velocity += 9.81 * delta *Vector3(0, -1, 0)
+	velocity += playerGravity * delta *Vector3(0, -1, 0)
 
 func _ready():
 	set_fixed_process(true)
@@ -81,3 +90,4 @@ func _ready():
 	key_left = "ui_left" + str(playerNumber)
 	key_right = "ui_right" + str(playerNumber)
 	key_jump = "ui_jump" + str(playerNumber)
+	key_stomp = "ui_stomp" + str(playerNumber)

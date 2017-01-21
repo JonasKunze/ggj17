@@ -53,6 +53,8 @@ func stomp(position):
 	
 	for x in range(-4, 5):
 		for z in range(-4, 5):
+			if ((indexX + x < 1) or (indexZ + z < 1) or (indexX + x > sizeX-2) or (indexZ + z > sizeZ-2)):
+				continue
 			var r = sqrt(x*x+z*z)
 			if abs(r-4) < 0.5:
 				waves.setAmplitude(indexX+x, indexZ+z, stomplitude)
