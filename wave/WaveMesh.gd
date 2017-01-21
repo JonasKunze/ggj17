@@ -5,8 +5,8 @@ var myMesh = null
 var gameTimePassed = 0
 export var sizeX = 2
 export var sizeZ = 2
-var springConstant = 40
-var friction = 0.05
+var springConstant = 15
+var friction = 0.01
 
 var vertices = []
 var velocities = []
@@ -33,7 +33,7 @@ func initVertices():
 			lastCol.append(Vector3(x, 0, z))
 			velos.append(0)
 			
-	vertices[50][50] = Vector3(0, 100, 0)
+	vertices[50][50] = Vector3(50, 100, 50)
 	lastVertices[50][50] = vertices[50][50]
 
 func createMesh():
@@ -72,14 +72,27 @@ func _process(deltaT):
 	for z in range(1, sizeX-1):
 		for x in range(1, sizeZ-1):
 			var currentY = vertices[z][x].y
-			var north = lastVertices[z+1][x].y - currentY
-			var east = lastVertices[z][x+1].y - currentY
-			var south = lastVertices[z-1][x].y - currentY
-			var west = lastVertices[z][x-1].y - currentY
-			var force = springConstant * (north+east+south+west) - friction * velocities[z][x]
+			var force = 0
+			for i in range(-1, 2):
+				for j in range(-1, 2):
+					if abs(i) + abs(j) == 2:
+						force += 0.707* (lastVertices[z+i][x+j].y - currentY)
+						
+					else:
+						force += lastVertices[z+i][x+j].y - currentY
+						
+					
+			print(force)
+			#var north = lastVertices[z+1][x].y - currentY
+			#var east = lastVertices[z][x+1].y - currentY
+			#var south = lastVertices[z-1][x].y - currentY
+			#var west = lastVertices[z][x-1].y - currentY
+			#var force = springConstant * (north+east+south+west) * (1-friction)
+			
+			force *= springConstant * (1-friction)
 			
 			vertices[z][x].y = tsquareHalf*force + velocities[z][x] * deltaT
 			velocities[z][x] += force*deltaT
-			
+	
 	lastVertices = vertices
 	createMesh()
