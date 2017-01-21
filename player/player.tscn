@@ -29,7 +29,8 @@ collide_with/character = false
 collision/margin = 0.001
 script/script = ExtResource( 1 )
 speed = 10
-jumpSpeed = 1
+jumpSpeed = 20
+playerGravity = 35.0
 
 [node name="snowman" parent="player" instance=ExtResource( 2 )]
 

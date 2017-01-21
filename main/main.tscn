@@ -16,13 +16,10 @@ transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.901434, 0 )
 
 [node name="Wave" parent="." instance=ExtResource( 1 )]
 
-sizeX = 20
-sizeZ = 20
-
 [node name="Camera" type="Camera" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 0.999975, -0.00450674, 0.00537092, 0, 0.766044, 0.642787, -0.00701125, -0.642771, 0.766025, -0.3709, 9.94075, 14.7166 )
+transform/local = Transform( 1, 0, 0, 0, 0.766044, 0.642787, 0, -0.642787, 0.766044, 0, 30, 38.6108 )
 projection = 0
 fov = 60.0
 near = 0.1
@@ -98,7 +95,7 @@ _update_shape_index = 0
 
 [node name="Snow" parent="." instance=ExtResource( 3 )]
 
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.1443, 4.51578 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28.5868, 28.8769 )
 
 [node name="Init" type="Spatial" parent="."]
 
