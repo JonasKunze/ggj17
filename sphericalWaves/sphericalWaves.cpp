@@ -1,6 +1,7 @@
 #include "sphericalWaves.h"
 #include <cmath>
 #include <stdlib.h>
+#include "math/vector3.h"
 
 SphericalWaves::SphericalWaves() {
 	twoSquareHalf = sqrt(2) / 2;
@@ -66,9 +67,21 @@ void SphericalWaves::update(double deltaT) {
 	}
 }
 
+void SphericalWaves::applyAmplitude(Vector<Variant> voxels, int index) {
+	for (int x = 1; x < xSize - 1; ++x) {
+		for (int y = 1; y < ySize -1; ++y) {
+			Spatial* node = (Spatial*)((Node*) voxels[x * ySize + y]);
+			Vector3 translation = node->get_translation();
+			translation[index] = currentAmplitudes[x * ySize + y];
+			node->set_translation(translation);
+		}
+	}
+}
+
 void SphericalWaves::_bind_methods() {
 	ObjectTypeDB::bind_method("init",&SphericalWaves::init);
 	ObjectTypeDB::bind_method("update",&SphericalWaves::update);
+	ObjectTypeDB::bind_method("applyAmplitude",&SphericalWaves::applyAmplitude);
 	ObjectTypeDB::bind_method("getAmplitude",&SphericalWaves::getAmplitude);
 	ObjectTypeDB::bind_method("setAmplitude",&SphericalWaves::setAmplitude);
 }

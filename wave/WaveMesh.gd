@@ -19,17 +19,13 @@ func _ready():
 			var box = mapscene.instance()
 			add_child(box)
 			box.set_translation(Vector3(pos))
-			print(pos)
 			boxes.append(box)
-	boxes[sizeZ/2.0 * sizeX + sizeX/2.0].set_translation(Vector3(0, 100, 0))
 	waves.setAmplitude(sizeZ/2.0, sizeX/2.0, -100)
+	waves.applyAmplitude(boxes, 1)
+	
 	self.set_process(true)
 
 func _process(deltaT):
 	print(1/deltaT)
 	waves.update(deltaT)
-	for z in range(1, sizeZ-1):
-		for x in range(1, sizeX-1):
-			var currentPos = boxes[z * sizeX + x].get_translation()
-			currentPos.y = waves.getAmplitude(z, x)
-			boxes[z * sizeX + x].set_translation(currentPos)
+	waves.applyAmplitude(boxes, 1)
