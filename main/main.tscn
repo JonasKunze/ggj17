@@ -11,7 +11,7 @@ _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 [node name="Camera" type="Camera" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 0.210996, 0.977487, 0, -0.977487, 0.210996, 5, 10, 5 )
+transform/local = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 50, 80, 50 )
 projection = 0
 fov = 60.0
 near = 0.1
@@ -26,7 +26,7 @@ v_offset = 0.0
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 0.41692, 0.908943, 0, -0.908943, 0.41692, -0.0148048, 8.66408, 13.9143 )
+transform/local = Transform( 1, 0, 0, 0, 0.41692, 0.908943, 0, -0.908943, 0.41692, 0.325466, 9.08787, 13.5926 )
 layers = 1
 params/enabled = true
 params/editor_only = false
