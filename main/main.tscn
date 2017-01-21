@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://enemy/enemySpawner.gd" type="Script" id=1]
 [ext_resource path="res://wave/wave.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Camera.gd" type="Script" id=3]
-[ext_resource path="res://enemy/pumpkin.scn" type="PackedScene" id=4]
-[ext_resource path="res://snow/snow.tscn" type="PackedScene" id=5]
-[ext_resource path="res://player/player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://goals/goals.tscn" type="PackedScene" id=7]
+[ext_resource path="res://goals/Ball.gd" type="Script" id=4]
+[ext_resource path="res://enemy/pumpkin.scn" type="PackedScene" id=5]
+[ext_resource path="res://snow/snow.tscn" type="PackedScene" id=6]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://goals/goals.tscn" type="PackedScene" id=8]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -64,7 +65,7 @@ shadow/zoffset_scale = 2.0
 [node name="Ball" type="RigidBody" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.88786, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.1399, 30.8268, 1.11427 )
 input/ray_pickable = true
 input/capture_on_drag = false
 shape_count = 1
@@ -80,8 +81,8 @@ bounce = 0.1
 gravity_scale = 1.0
 custom_integrator = false
 continuous_cd = false
-contacts_reported = 0
-contact_monitor = false
+contacts_reported = 1
+contact_monitor = true
 sleeping = false
 can_sleep = true
 axis_lock = 0
@@ -89,6 +90,8 @@ velocity/linear = Vector3( 0, 0, 0 )
 velocity/angular = Vector3( 0, 0, 0 )
 damp_override/linear = -1.0
 damp_override/angular = -1.0
+script/script = ExtResource( 4 )
+startPosition = Vector3( 0, 2, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Ball"]
 
@@ -97,22 +100,22 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="pumpkin" parent="Ball" instance=ExtResource( 4 )]
+[node name="pumpkin" parent="Ball" instance=ExtResource( 5 )]
 
-[node name="Snow" parent="." instance=ExtResource( 5 )]
+[node name="Snow" parent="." instance=ExtResource( 6 )]
 
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28.5868, 28.8769 )
 
-[node name="Player1" parent="." instance=ExtResource( 6 )]
+[node name="Player1" parent="." instance=ExtResource( 7 )]
 
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27055, 4.75606 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0121193, 1.1106, 4.8101 )
 
-[node name="Player2" parent="." instance=ExtResource( 6 )]
+[node name="Player2" parent="." instance=ExtResource( 7 )]
 
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0105934, 1.27198, -3.48092 )
 playerNumber = 1
 
-[node name="Goals" parent="." instance=ExtResource( 7 )]
+[node name="Goals" parent="." instance=ExtResource( 8 )]
 
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.19209e-07, 0 )
 

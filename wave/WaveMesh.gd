@@ -2,9 +2,10 @@ extends Spatial
 
 export var sizeX = 2
 export var sizeZ = 2
+
 var stomplitude = 10
 var springConstant = 10
-var friction = 0.5
+var friction = 1.2
 
 var boxes = []
 var waves = SphericalWaves.new()
@@ -30,15 +31,15 @@ func _ready():
 var frame = 0
 func _process(deltaT):
 	frame = frame + 1
-	#if frame %50 == 0:
-		#print(1/deltaT)
+	if frame %50 == 0:
+		print(1/deltaT)
 	waves.update(deltaT)
 	
-	# I will build a wall to make games great again	
-	for x in range(0, sizeX/2):
-		waves.setAmplitude(x, 10, 0)
-		waves.setAmplitude(x, 11, 0)
-		waves.setAmplitude(x, 13, 0)
+	# I will build a wall to make games great again
+	#for x in range(0, sizeX/2):
+	#	waves.setAmplitude(x, 10, 0)
+	#	waves.setAmplitude(x, 11, 0)
+	#	waves.setAmplitude(x, 13, 0)
 	
 	if OS.get_unix_time()-lastStompTime < 5:
 		for i in range(-1, 2):
