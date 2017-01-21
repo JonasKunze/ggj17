@@ -27,6 +27,13 @@ func _fixed_process(delta):
 	
 	var motion = velocity * delta
 	motion = move(motion)
+	
+	if (is_colliding()):
+        var n = get_collision_normal()
+        motion = n.slide(motion)
+        velocity = n.slide(velocity)
+        move(motion)
+	
 	velocity += 9.81 * delta *Vector3(0, -1, 0)
 
 func _ready():
