@@ -4,19 +4,26 @@ extends KinematicBody
 # var a = 2
 # var b = "textvar"
 
+var playerNumber = 0
 export var speed = 10
 export var jumpSpeed = 4
 var velocity = Vector3()
 var keyPressCounter = 0
 
+var key_up = ""
+var key_down = ""
+var key_left = ""
+var key_right = ""
+var key_jump = ""
+
 var jumped = false
 
 func _input(event):
 	var snowmanAnimationPlayer = get_node("snowman/AnimationPlayer")
-	if event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right")  or event.is_action_pressed("ui_up")  or event.is_action_pressed("ui_down"):
+	if event.is_action_pressed(key_left) or event.is_action_pressed(key_right)  or event.is_action_pressed(key_up)  or event.is_action_pressed(key_down):
 		keyPressCounter += 1
 		snowmanAnimationPlayer.play("hop")
-	if event.is_action_released("ui_left") or event.is_action_released("ui_right")  or event.is_action_released("ui_up")  or event.is_action_released("ui_down"):
+	if event.is_action_released(key_left) or event.is_action_released(key_right)  or event.is_action_released(key_up)  or event.is_action_released(key_down):
 		keyPressCounter -= 1
 	if keyPressCounter > 0:
 		snowmanAnimationPlayer.get_animation("hop").set_loop(true)
@@ -24,18 +31,18 @@ func _input(event):
 		snowmanAnimationPlayer.get_animation("hop").set_loop(false)
 
 func _fixed_process(delta):
-	if (Input.is_action_pressed("ui_left")):
+	if (Input.is_action_pressed(key_left)):
 		velocity.x = -speed
 		set_rotation(Vector3(0,PI,0))
-	elif (Input.is_action_pressed("ui_right")):
+	elif (Input.is_action_pressed(key_right)):
 		velocity.x = speed
 		set_rotation(Vector3(0,2*PI,0))
 	else:
 		velocity.x = 0
-	if (Input.is_action_pressed("ui_up")):
+	if (Input.is_action_pressed(key_up)):
 		velocity.z = -speed
 		set_rotation(Vector3(0,0.5*PI,0))
-	elif (Input.is_action_pressed("ui_down")):
+	elif (Input.is_action_pressed(key_down)):
 		velocity.z = speed
 		set_rotation(Vector3(0,1.5*PI,0))
 	else:
@@ -56,7 +63,7 @@ func _fixed_process(delta):
 			var stompCenter = get_node("/root/Spatial/Wave").stomp(get_translation())
 			set_translation(stompCenter)
 		
-		if Input.is_action_pressed("ui_jump"):
+		if Input.is_action_pressed(key_jump):
 			jumped = true
 			velocity.y = jumpSpeed
 		else:
@@ -68,3 +75,9 @@ func _fixed_process(delta):
 func _ready():
 	set_fixed_process(true)
 	set_process_input(true)
+	
+	key_up = "ui_up" + str(playerNumber)
+	key_down = "ui_down" + str(playerNumber)
+	key_left = "ui_left" + str(playerNumber)
+	key_right = "ui_right" + str(playerNumber)
+	key_jump = "ui_jump" + str(playerNumber)
