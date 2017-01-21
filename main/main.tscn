@@ -55,6 +55,8 @@ shadow/zoffset_scale = 2.0
 
 [node name="Spatial" parent="." instance=ExtResource( 2 )]
 
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.52229, 0 )
+
 [node name="StaticBody" type="StaticBody" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )

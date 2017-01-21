@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=1]
+
+[sub_resource type="MaterialShaderGraph" id=1]
+
+_code = { "fragment":"vec3 nd1sl9=COLOR.rgb;\nvec3 DIFFUSE_OUT=vec3(0,0,0);\nfloat ALPHA_OUT=0;\nDIFFUSE_OUT=nd1sl9;\nDIFFUSE=DIFFUSE_OUT;\n", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"mat4 nd1sl8=WORLD_MATRIX;\nmat4 nd1sl11=MODELVIEW_MATRIX;\nvec3 nd1sl0=SRC_VERTEX;\nvec3 nd5sl0=(nd1sl8*vec4(nd1sl0,1)).xyz;\nfloat nd2sl0=nd5sl0.x;\nfloat nd2sl1=nd5sl0.y;\nfloat nd2sl2=nd5sl0.z;\nfloat nd3sl0=abs(nd2sl1);\nfloat nd7sl1def=1;\nfloat nd7sl0=nd3sl0*nd7sl1def;\nfloat nd4sl1def=0;\nfloat nd4sl2def=0;\nvec3 nd4sl0=vec3(nd7sl0,nd4sl1def,nd4sl2def);\nmat4 nd6sl1def=mat4(\n\tvec4(vec3(1,0,0),0),\n\tvec4(vec3(0,1,0),0),\n\tvec4(vec3(0,0,1),0),\n\tvec4(vec3(0,0,0),1)\n);\nmat4 nd6sl0=nd1sl11*nd6sl1def;\nCOLOR.rgb=nd4sl0;\n", "vertex_ofs":0 }
+_data = { "shaders":[ [ 0, 33, Vector2( 1107, 38 ), null, null, [ 6, 4, 0 ], 1, 0, Vector2( 50, 40 ), null, null, [  ], 2, 18, Vector2( 439, 64 ), null, null, [ 0, 5, 0, 2147483647, 0, null ], 3, 14, Vector2( 571, 117 ), 12, null, [ 0, 2, 1, 2147483647, 0, null ], 4, 19, Vector2( 905, 101 ), null, null, [ 0, 7, 0, 2147483647, 0, null, 2147483647, 1, 0.0, 2147483647, 2, null ], 5, 12, Vector2( 348, 223 ), false, null, [ 0, 1, 8, 1, 1, 0, 2147483647, 0, null, 2147483647, 1, null ], 6, 11, Vector2( 231, 133 ), null, null, [ 0, 1, 11, 2147483647, 0, null, 2147483647, 1, null ], 7, 7, Vector2( 712, 138 ), 2, null, [ 0, 3, 0, 2147483647, 0, null, 2147483647, 1, 1.0 ] ], [ 0, 33, Vector2( 841, 56 ), null, null, [ 0, 1, 9 ], 1, 0, Vector2( 50, 40 ), null, null, [  ] ], [ 0, 33, Vector2( 350, 40 ), null, null, [  ], 1, 0, Vector2( 50, 40 ), null, null, [  ] ] ] }
+
+[sub_resource type="ShaderMaterial" id=2]
+
+flags/visible = true
+flags/double_sided = false
+flags/invert_faces = false
+flags/unshaded = false
+flags/on_top = false
+flags/lightmap_on_uv2 = true
+flags/colarray_is_srgb = false
+params/blend_mode = 0
+params/depth_draw = 1
+params/line_width = 0.0
+shader/shader = SubResource( 1 )
+
+[node name="Spatial" type="Spatial"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+input/ray_pickable = true
+input/capture_on_drag = false
+shape_count = 0
+collision/layers = 1
+collision/mask = 1
+friction = 1.0
+bounce = 0.0
+constant_linear_velocity = Vector3( 0, 0, 0 )
+constant_angular_velocity = Vector3( 0, 0, 0 )
+
+[node name="TestCube" type="TestCube" parent="StaticBody"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+layers = 1
+geometry/visible = true
+geometry/material_override = SubResource( 2 )
+geometry/cast_shadow = 1
+geometry/receive_shadows = true
+geometry/range_begin = 0.0
+geometry/range_end = 0.0
+geometry/extra_cull_margin = 0.0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+
+
