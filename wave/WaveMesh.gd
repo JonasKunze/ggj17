@@ -7,7 +7,9 @@ export var sizeX = 2
 export var sizeZ = 2
 var springConstant = 5
 var friction = 0.5
-var maxAmplitude = 10
+var maxAmplitude = 100
+
+var waveSource = null
 
 var boxes = []
 var velocities = []
@@ -18,6 +20,7 @@ var mapscene = load("res://groundBox/groundBox.tscn")
 export(Material) var material = null
 
 func _ready():
+	waveSource = Vector3(sizeX/2, 0, sizeZ/2)
 	initBoxes()
 	self.set_process(true)
 	
@@ -31,13 +34,13 @@ func initBoxes():
 		velocities.append(velos)
 		
 		for x in range(0, sizeX):
-			var pos = Vector3(x-(sizeX-1)/2.0, 0, z-(sizeZ-1)/2.0)
+			var pos = Vector3(x-(sizeX)/2.0, 0, z-(sizeZ)/2.0)
 			col.append(createBox(pos))
 			lastCol.append(pos)
 			velos.append(0)
 			
-	boxes[sizeZ/2][sizeX/2].set_translation(Vector3(0, maxAmplitude, 0))
-	lastVertices[sizeZ/2][sizeX/2] = boxes[sizeZ/2][sizeX/2].get_translation()
+	boxes[waveSource.z][waveSource.x].set_translation(Vector3(0, maxAmplitude, 0))
+	lastVertices[waveSource.z][waveSource.x] = boxes[waveSource.z][waveSource.x].get_translation()
 
 func createBox(position):
 	var box = mapscene.instance()
@@ -53,10 +56,6 @@ func _process(deltaT):
 	print(1/deltaT)
 	gameTimePassed += deltaT
 	
-	#boxes[sizeZ/2][sizeX/2].set_translation(Vector3(0, -10, 0))
-	#lastVertices[sizeZ/2][sizeX/2] = Vector3(0, -10, 0)
-	#velocities[sizeZ/2][sizeX/2] = 0
-	
 	for z in range(1, sizeX-1):
 		for x in range(1, sizeZ-1):
 			var force = 0
@@ -69,7 +68,6 @@ func _process(deltaT):
 						force += 0.707 * (difference)
 					else:
 						force += difference
-
 			force = force * springConstant - velocities[z][x] * friction
 			
 			velocities[z][x] += force * deltaT  
@@ -82,4 +80,8 @@ func _process(deltaT):
 	for z in range(1, sizeX-1):
 		for x in range(1, sizeZ-1):
 			lastVertices[z][x] = boxes[z][x].get_translation()
+			
+	boxes[sizeZ/2][sizeX/2].set_translation(Vector3(0, 0, 0))	
+	lastVertices[sizeZ/2][sizeX/2] = boxes[sizeZ/2][sizeX/2].get_translation()
+	velocities[sizeZ/2][sizeX/2] = 0
 	
