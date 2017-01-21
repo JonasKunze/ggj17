@@ -61,10 +61,8 @@ void SphericalWaves::update(double deltaT) {
 			velocities[x * ySize + y] += + force * deltaT;
 		}
 	}
-	for (int x = 1; x < xSize - 1; ++x) {
-		for (int y = 1; y < ySize -1; ++y) {
-			currentAmplitudes[x * ySize + y] = nextAmplitudes[x * ySize + y];
-		}
+	for (int i = 0; i < xSize * ySize; ++i) {
+		currentAmplitudes[i] = nextAmplitudes[i];
 	}
 }
 
