@@ -4,7 +4,8 @@ extends KinematicBody
 # var a = 2
 # var b = "textvar"
 
-const speed = 10
+export var speed = 10
+export var jumpSpeed = 4
 var velocity = Vector3()
 
 func _fixed_process(delta):
@@ -19,11 +20,14 @@ func _fixed_process(delta):
 		velocity.z = -speed
 	elif (Input.is_action_pressed("ui_down")):
 		velocity.z = speed
+	elif (Input.is_action_pressed("ui_jump")):
+		velocity.y = jumpSpeed
 	else:
 		velocity.z = 0
 	
 	var motion = velocity * delta
 	motion = move(motion)
+	velocity += 9.81 * delta *Vector3(0, -1, 0)
 
 func _ready():
 	set_fixed_process(true)
