@@ -2,9 +2,9 @@ extends Spatial
 
 export var sizeX = 2
 export var sizeZ = 2
-var stomplitude = 50
-var springConstant = 5
-var friction = 0.9
+var stomplitude = 100
+var springConstant = 20
+var friction = 0.3
 
 var boxes = []
 var waves = SphericalWaves.new()
