@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape" id=1]
 
-radius = 1.0
+radius = 0.598318
 height = 1.0
 
 [node name="snowman" type="KinematicBody"]
@@ -15,7 +15,7 @@ input/ray_pickable = true
 input/capture_on_drag = false
 shape_count = 1
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shapes/0/transform = Transform( 0.739575, 0, 0, 0, -3.23278e-08, -0.739575, 0, 0.739575, -3.23278e-08, 0, 0.338609, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -37,6 +37,7 @@ transform/local = Transform( 0.49, 0, 0, 0, 0.49, 0, 0, 0, 0.49, 0, 0, 0 )
 [node name="CollisionShape" type="CollisionShape" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.739575, 0, 0, 0, -3.23278e-08, -0.739575, 0, 0.739575, -3.23278e-08, 0, 0.338609, 0 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
