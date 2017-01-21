@@ -2,8 +2,9 @@ extends Spatial
 
 export var sizeX = 2
 export var sizeZ = 2
-var springConstant = 15
-var friction = 0.01
+var stomplitude = 5000
+var springConstant = 50
+var friction = 0.0
 
 var boxes = []
 var waves = SphericalWaves.new()
@@ -20,16 +21,18 @@ func _ready():
 			add_child(box)
 			box.set_translation(pos)
 			boxes.append(box)
-	waves.setAmplitude(sizeZ/2.0, sizeX/2.0, 0)
 	waves.applyAmplitude(boxes, 1)
 	self.set_process(true)
 
+var frame = 0
 func _process(deltaT):
-	#print(1/deltaT)
+	frame = frame + 1
+	if frame %50 == 0:
+		print(1/deltaT)
 	waves.update(deltaT)
 	waves.applyAmplitude(boxes, 1)
 
 func stomp(position):
 	var indexX = int(position.x)+sizeX/2
 	var indexZ = int(position.z)+sizeZ/2
-	waves.setAmplitude(indexX, indexZ, -100)
+	waves.setAmplitude(indexX, indexZ, stomplitude)
