@@ -82,9 +82,8 @@ geometry/baked_light_tex_id = 0
 mesh/mesh = null
 mesh/skeleton = NodePath("..")
 script/script = ExtResource( 1 )
-sizeX = 50
-sizeZ = 50
-springConstant = 2
+sizeX = 100
+sizeZ = 100
 material = SubResource( 2 )
 
 [node name="Particles" type="Particles" parent="."]
