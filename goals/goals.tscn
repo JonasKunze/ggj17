@@ -1,0 +1,128 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://goals/goalplane.msh" type="Mesh" id=1]
+
+[sub_resource type="BoxShape" id=3]
+
+extents = Vector3( 1, 1, 1 )
+
+[sub_resource type="MaterialShaderGraph" id=1]
+
+_code = { "fragment":"vec3 DIFFUSE_OUT=vec3(0,0,0);\nfloat ALPHA_OUT=0;\nuniform vec3 Vec3=vec3(0.6,1,0.6);\nvec3 nd2sl0=Vec3;\nuniform float Scalar=0.2;\nfloat nd5sl0=Scalar;\nfloat nd3sl0=TIME;\nuniform float Scalar_3=3;\nfloat nd10sl0=Scalar_3;\nuniform float Scalar_2=0.05;\nfloat nd8sl0=Scalar_2;\nfloat nd9sl0=nd3sl0*nd10sl0;\nfloat nd4sl0=sin(nd9sl0);\nfloat nd7sl0=nd8sl0*nd4sl0;\nfloat nd6sl0=nd5sl0+nd7sl0;\nDIFFUSE_OUT=nd2sl0;\nALPHA_OUT=nd6sl0;\nDIFFUSE_ALPHA=vec4(DIFFUSE_OUT,ALPHA_OUT);\n", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
+_data = { "shaders":[ [ 0, 33, Vector2( 517, 47 ), null, null, [  ], 1, 0, Vector2( -214, 54 ), null, null, [  ] ], [ 0, 33, Vector2( 822, 83.2 ), null, null, [ 0, 2, 0, 1, 6, 0 ], 1, 0, Vector2( 50, 40 ), null, null, [  ], 2, 27, Vector2( 385, 38 ), "Vec3", Vector3( 0.6, 1, 0.6 ), [  ], 3, 5, Vector2( 131, 345 ), null, null, [  ], 4, 14, Vector2( 469, 393 ), 0, null, [ 0, 9, 0, 2147483647, 0, null ], 5, 26, Vector2( 358, 189 ), "Scalar", 0.2, [  ], 6, 7, Vector2( 713, 162 ), 0, null, [ 0, 5, 0, 1, 7, 0, 2147483647, 0, null, 2147483647, 1, null ], 7, 7, Vector2( 577, 294 ), 2, null, [ 0, 8, 0, 1, 4, 0, 2147483647, 0, null, 2147483647, 1, null ], 8, 26, Vector2( 397, 294 ), "Scalar_2", 0.05, [  ], 9, 7, Vector2( 292, 335 ), 2, null, [ 0, 3, 0, 1, 10, 0, 2147483647, 0, null, 2147483647, 1, null ], 10, 26, Vector2( 102, 402 ), "Scalar_3", 3.0, [  ] ], [ 0, 33, Vector2( 350, 40 ), null, null, [  ], 1, 0, Vector2( 50, 40 ), null, null, [  ] ] ] }
+
+[sub_resource type="ShaderMaterial" id=2]
+
+flags/visible = true
+flags/double_sided = false
+flags/invert_faces = false
+flags/unshaded = true
+flags/on_top = false
+flags/lightmap_on_uv2 = true
+flags/colarray_is_srgb = false
+params/blend_mode = 0
+params/depth_draw = 1
+params/line_width = 0.0
+shader/shader = SubResource( 1 )
+shader_param/Vec3 = null
+shader_param/Scalar = null
+shader_param/Scalar_3 = null
+shader_param/Scalar_2 = null
+
+[node name="Spatial" type="Spatial"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="Goal1" type="StaticBody" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( -1.09278e-06, 0, -25, 0, 25, 0, 25, 0, -1.09278e-06, -25, 0, 0 )
+input/ray_pickable = true
+input/capture_on_drag = false
+shape_count = 1
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+friction = 1.0
+bounce = 0.0
+constant_linear_velocity = Vector3( 0, 0, 0 )
+constant_angular_velocity = Vector3( 0, 0, 0 )
+
+[node name="Goal1Mesh" type="MeshInstance" parent="Goal1"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+layers = 1
+geometry/visible = true
+geometry/material_override = null
+geometry/cast_shadow = 1
+geometry/receive_shadows = true
+geometry/range_begin = 0.0
+geometry/range_end = 0.0
+geometry/extra_cull_margin = 0.0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+mesh/mesh = ExtResource( 1 )
+mesh/skeleton = NodePath("..")
+material/0 = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Goal1"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Goal2" type="StaticBody" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( -1.09278e-06, 0, 25, 0, 25, 0, -25, 0, -1.09278e-06, 25, 0, 0 )
+input/ray_pickable = true
+input/capture_on_drag = false
+shape_count = 1
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+friction = 1.0
+bounce = 0.0
+constant_linear_velocity = Vector3( 0, 0, 0 )
+constant_angular_velocity = Vector3( 0, 0, 0 )
+
+[node name="Goal2Mesh" type="MeshInstance" parent="Goal2"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+layers = 1
+geometry/visible = true
+geometry/material_override = null
+geometry/cast_shadow = 1
+geometry/receive_shadows = true
+geometry/range_begin = 0.0
+geometry/range_end = 0.0
+geometry/extra_cull_margin = 0.0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+mesh/mesh = ExtResource( 1 )
+mesh/skeleton = NodePath("..")
+material/0 = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Goal2"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+
