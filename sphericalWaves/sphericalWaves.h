@@ -2,6 +2,10 @@
 #define SPHERICALWAVES_H
 
 #include "reference.h"
+#include "scene/main/node.h"
+#include "scene/3d/spatial.h"
+#include "variant.h"
+
 
 class SphericalWaves : public Reference {
 	OBJ_TYPE(SphericalWaves, Reference);
@@ -19,6 +23,7 @@ public:
 	double getAmplitude(int x, int y);
 	void setAmplitude(int x, int y, double value);
 	void update(double deltaT);
+	void applyAmplitude(Vector<Variant> voxels, int index);
 };
 
 #endif
