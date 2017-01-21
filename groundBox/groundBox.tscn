@@ -6,15 +6,15 @@ extents = Vector3( 1, 1, 1 )
 
 [sub_resource type="MaterialShaderGraph" id=2]
 
-_code = { "fragment":"vec3 nd1sl9=COLOR.rgb;\nvec3 DIFFUSE_OUT=vec3(0,0,0);\nfloat ALPHA_OUT=0;\nDIFFUSE_OUT=nd1sl9;\nDIFFUSE=DIFFUSE_OUT;\n", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"mat4 nd1sl8=WORLD_MATRIX;\nmat4 nd1sl11=MODELVIEW_MATRIX;\nvec3 nd1sl0=SRC_VERTEX;\nvec3 nd5sl0=(nd1sl8*vec4(nd1sl0,1)).xyz;\nfloat nd2sl0=nd5sl0.x;\nfloat nd2sl1=nd5sl0.y;\nfloat nd2sl2=nd5sl0.z;\nfloat nd3sl0=abs(nd2sl1);\nfloat nd7sl1def=1;\nfloat nd7sl0=nd3sl0*nd7sl1def;\nfloat nd4sl1def=0;\nfloat nd4sl2def=0;\nvec3 nd4sl0=vec3(nd7sl0,nd4sl1def,nd4sl2def);\nmat4 nd6sl1def=mat4(\n\tvec4(vec3(1,0,0),0),\n\tvec4(vec3(0,1,0),0),\n\tvec4(vec3(0,0,1),0),\n\tvec4(vec3(0,0,0),1)\n);\nmat4 nd6sl0=nd1sl11*nd6sl1def;\nCOLOR.rgb=nd4sl0;\n", "vertex_ofs":0 }
-_data = { "shaders":[ [ 0, 33, Vector2( 1107, 38 ), null, null, [ 6, 4, 0 ], 1, 0, Vector2( 50, 40 ), null, null, [  ], 2, 18, Vector2( 439, 64 ), null, null, [ 0, 5, 0, 2147483647, 0, null ], 3, 14, Vector2( 571, 117 ), 12, null, [ 0, 2, 1, 2147483647, 0, null ], 4, 19, Vector2( 905, 101 ), null, null, [ 0, 7, 0, 2147483647, 0, null, 2147483647, 1, 0.0, 2147483647, 2, null ], 5, 12, Vector2( 348, 223 ), false, null, [ 0, 1, 8, 1, 1, 0, 2147483647, 0, null, 2147483647, 1, null ], 6, 11, Vector2( 231, 133 ), null, null, [ 0, 1, 11, 2147483647, 0, null, 2147483647, 1, null ], 7, 7, Vector2( 712, 138 ), 2, null, [ 0, 3, 0, 2147483647, 0, null, 2147483647, 1, 1.0 ] ], [ 0, 33, Vector2( 841, 56 ), null, null, [ 0, 1, 9 ], 1, 0, Vector2( 50, 40 ), null, null, [  ] ], [ 0, 33, Vector2( 350, 40 ), null, null, [  ], 1, 0, Vector2( 50, 40 ), null, null, [  ] ] ] }
+_code = { "fragment":"vec3 nd1sl9=COLOR.rgb;\nvec3 DIFFUSE_OUT=vec3(0,0,0);\nfloat ALPHA_OUT=0;\nDIFFUSE_OUT=nd1sl9;\nDIFFUSE=DIFFUSE_OUT;\n", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"mat4 nd1sl8=WORLD_MATRIX;\nvec3 nd1sl0=SRC_VERTEX;\nuniform vec3 ColorTop=vec3(0.8,0.8,1);\nvec3 nd8sl0=ColorTop;\nvec3 nd5sl0=(nd1sl8*vec4(nd1sl0,1)).xyz;\nuniform float Scale=1;\nfloat nd7sl0=Scale;\nfloat nd2sl0=nd5sl0.x;\nfloat nd2sl1=nd5sl0.y;\nfloat nd2sl2=nd5sl0.z;\nfloat nd4sl0=nd7sl0*nd2sl1;\nvec3 nd11sl0=nd8sl0*nd4sl0;\nuniform vec3 ColorBottom=vec3(1,1,1);\nvec3 nd9sl0=ColorBottom;\nfloat nd12sl0def=1;\nfloat nd12sl0=nd12sl0def-nd4sl0;\nvec3 nd13sl0=nd9sl0*nd12sl0;\nvec3 nd10sl0=nd11sl0+nd13sl0;\nCOLOR.rgb=nd10sl0;\n", "vertex_ofs":0 }
+_data = { "shaders":[ [ 0, 33, Vector2( 1107, 38 ), null, null, [ 6, 10, 0 ], 1, 0, Vector2( 50, 40 ), null, null, [  ], 2, 18, Vector2( 335, 36 ), null, null, [ 0, 5, 0, 2147483647, 0, null ], 4, 7, Vector2( 449, 156 ), 2, null, [ 0, 7, 0, 1, 2, 1, 2147483647, 0, 0.01, 2147483647, 1, null ], 5, 12, Vector2( 230, 189 ), false, null, [ 0, 1, 8, 1, 1, 0, 2147483647, 0, null, 2147483647, 1, null ], 7, 26, Vector2( 458, 19 ), "Scale", 1.0, [  ], 8, 27, Vector2( 676, 80 ), "ColorTop", Vector3( 0.8, 0.8, 1 ), [  ], 9, 27, Vector2( 665, 237 ), "ColorBottom", Vector3( 1, 1, 1 ), [  ], 10, 8, Vector2( 990, 173 ), 0, null, [ 0, 11, 0, 1, 13, 0, 2147483647, 0, null, 2147483647, 1, null ], 11, 9, Vector2( 836, 146 ), 0, null, [ 0, 8, 0, 1, 4, 0, 2147483647, 0, null, 2147483647, 1, null ], 12, 7, Vector2( 676, 390 ), 1, null, [ 1, 4, 0, 2147483647, 0, 1.0, 2147483647, 1, null ], 13, 9, Vector2( 820, 332 ), 0, null, [ 0, 9, 0, 1, 12, 0, 2147483647, 0, null, 2147483647, 1, null ] ], [ 0, 33, Vector2( 841, 56 ), null, null, [ 0, 1, 9 ], 1, 0, Vector2( 50, 40 ), null, null, [  ] ], [ 0, 33, Vector2( 350, 40 ), null, null, [  ], 1, 0, Vector2( 50, 40 ), null, null, [  ] ] ] }
 
 [sub_resource type="ShaderMaterial" id=3]
 
 flags/visible = true
 flags/double_sided = false
 flags/invert_faces = false
-flags/unshaded = false
+flags/unshaded = true
 flags/on_top = false
 flags/lightmap_on_uv2 = true
 flags/colarray_is_srgb = false
@@ -22,6 +22,9 @@ params/blend_mode = 0
 params/depth_draw = 1
 params/line_width = 0.0
 shader/shader = SubResource( 2 )
+shader_param/ColorTop = null
+shader_param/Scale = null
+shader_param/ColorBottom = null
 
 [node name="Spatial" type="Spatial"]
 
@@ -50,8 +53,8 @@ transform/local = Transform( 0.5, 0, 0, 0, 50, 0, 0, 0, 0.5, 0, -50, 0 )
 layers = 1
 geometry/visible = true
 geometry/material_override = SubResource( 3 )
-geometry/cast_shadow = 1
-geometry/receive_shadows = true
+geometry/cast_shadow = 0
+geometry/receive_shadows = false
 geometry/range_begin = 0.0
 geometry/range_end = 0.0
 geometry/extra_cull_margin = 0.0
