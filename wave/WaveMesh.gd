@@ -5,6 +5,7 @@ var myMesh = null
 var gameTimePassed = 0
 export var sizeX = 2
 export var sizeZ = 2
+var center = Vector2(16, 16)
 var springConstant = 15
 var friction = 0.01
 
@@ -33,8 +34,8 @@ func initVertices():
 			lastCol.append(Vector3(x, 0, z))
 			velos.append(0)
 			
-	vertices[50][50] = Vector3(50, 100, 50)
-	lastVertices[50][50] = vertices[50][50]
+	vertices[center.x][center.y] = Vector3(center.x, 100, center.y)
+	lastVertices[center.x][center.y] = vertices[center.x][center.y]
 
 func createMesh():
 	var surfTool = SurfaceTool.new()
