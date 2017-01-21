@@ -23,22 +23,16 @@ shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 collide_with/static = true
-collide_with/kinematic = true
-collide_with/rigid = true
-collide_with/character = true
+collide_with/kinematic = false
+collide_with/rigid = false
+collide_with/character = false
 collision/margin = 0.001
 script/script = ExtResource( 1 )
 speed = 10
 jumpSpeed = 3
+jumpTimeout_s = 2
 
 [node name="snowman" parent="player" instance=ExtResource( 2 )]
-
-[node name="CollisionShape" type="CollisionShape" parent="player"]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-shape = SubResource( 1 )
-trigger = false
-_update_shape_index = 0
 
 [node name="Camera" type="Camera" parent="."]
 

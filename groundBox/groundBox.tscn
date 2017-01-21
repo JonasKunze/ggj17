@@ -26,7 +26,6 @@ shader/shader = SubResource( 2 )
 [node name="Spatial" type="Spatial"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
 
@@ -35,7 +34,7 @@ input/ray_pickable = true
 input/capture_on_drag = false
 shape_count = 1
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shapes/0/transform = Transform( 0.5, 0, 0, 0, 50, 0, 0, 0, 0.5, 0, -50, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -47,6 +46,7 @@ constant_angular_velocity = Vector3( 0, 0, 0 )
 [node name="TestCube" type="TestCube" parent="StaticBody"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.5, 0, 0, 0, 50, 0, 0, 0, 0.5, 0, -50, 0 )
 layers = 1
 geometry/visible = true
 geometry/material_override = SubResource( 3 )
@@ -65,6 +65,7 @@ geometry/baked_light_tex_id = 0
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.5, 0, 0, 0, 50, 0, 0, 0, 0.5, 0, -50, 0 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
