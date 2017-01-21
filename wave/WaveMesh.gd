@@ -13,26 +13,22 @@ export(Material) var material = null
 
 func _ready():
 	waves.init(sizeZ, sizeX, springConstant, friction)
-	for z in range(0, sizeZ):
-		for x in range(0, sizeX):
+	for x in range(0, sizeX):
+		for z in range(0, sizeZ):
 			var pos = Vector3(x - sizeX/2.0, 0, z - sizeZ/2.0)
 			var box = mapscene.instance()
 			add_child(box)
-			box.set_translation(Vector3(pos))
+			box.set_translation(pos)
 			boxes.append(box)
-	boxes[sizeZ/2.0 * sizeX + sizeX/2.0].set_translation(Vector3(0, 0, 0))
 	waves.setAmplitude(sizeZ/2.0, sizeX/2.0, 0)
+	waves.applyAmplitude(boxes, 1)
 	self.set_process(true)
 
 func _process(deltaT):
 	#print(1/deltaT)
 	waves.update(deltaT)
-	for z in range(1, sizeZ-1):
-		for x in range(1, sizeX-1):
-			var currentPos = boxes[z * sizeX + x].get_translation()
-			currentPos.y = waves.getAmplitude(x, z)
-			boxes[z * sizeX + x].set_translation(currentPos)
-			
+	waves.applyAmplitude(boxes, 1)
+
 func stomp(position):
 	var indexX = int(position.x)+sizeX/2
 	var indexZ = int(position.z)+sizeZ/2
