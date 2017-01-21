@@ -59,6 +59,13 @@ func _fixed_process(delta):
 		velocity = n.slide(velocity)
 		if n.y==0:
 			motion += Vector3(0, 0.1, 0)
+		
+		if self.get_translation().y < 0:
+			var newPos = self.get_translation()
+			newPos.y = 0
+			self.set_translation(newPos)
+		
+		motion += Vector3(0, 0.1, 0)
 		move(motion)
 			
 		if Input.is_action_pressed(key_stomp):
