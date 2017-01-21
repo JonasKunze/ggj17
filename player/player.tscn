@@ -30,7 +30,7 @@ collision/margin = 0.001
 script/script = ExtResource( 1 )
 speed = 10
 jumpSpeed = 3
-jumpTimeout_s = 2
+jumpTimeout_s = 1
 
 [node name="snowman" parent="player" instance=ExtResource( 2 )]
 
