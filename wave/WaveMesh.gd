@@ -3,8 +3,8 @@ extends Spatial
 export var sizeX = 2
 export var sizeZ = 2
 var stomplitude = 100
-var springConstant = 20
-var friction = 0.3
+var springConstant = 25
+var friction = 0.5
 
 var boxes = []
 var waves = SphericalWaves.new()
@@ -13,7 +13,7 @@ var mapscene = load("res://groundBox/groundBox.tscn")
 export(Material) var material = null
 
 func _ready():
-	waves.init(sizeZ, sizeX, springConstant, friction)
+	waves.init(sizeX, sizeZ, springConstant, friction)
 	for x in range(0, sizeX):
 		for z in range(0, sizeZ):
 			var pos = Vector3(x - sizeX/2.0, 0, z - sizeZ/2.0)
