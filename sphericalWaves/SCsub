@@ -1,0 +1,4 @@
+# SCsub
+Import('env')
+# add all cpp files to the build
+env.add_source_files(env.modules_sources,"*.cpp")
