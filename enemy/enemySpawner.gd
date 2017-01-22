@@ -30,8 +30,9 @@ var item = null
 var itemHeight = 2.0
 var itemRotation = 0.0
 
-func getRandomSpawnPos():
-		return Vector3(randi()%width - width/2 - 1, itemHeight, randi()%height - height/2 - 1)
+func getRandomSpawnPos(var maxDx = 0, var maxDy = 0):
+	var result =  Vector3(randi()%(width-maxDx) - width/2 - 1, itemHeight, randi()%(height-maxDy) - height/2 - 1)
+	return result
 
 func _process(deltaT):
 	if randf() < bananaSpawnLikelihood and item == null:
@@ -50,8 +51,9 @@ func _process(deltaT):
 		item.set_rotation(Vector3(0,itemRotation,0))
 	
 	if randf() < spawnLikelihood:
-		var spawnPos = getRandomSpawnPos()
-		for i in range (0, randi()%maxEnemiesPerSpawn):
+		var numberOfEnemies = randi()%maxEnemiesPerSpawn
+		var spawnPos = getRandomSpawnPos(numberOfEnemies, numberOfEnemies)
+		for i in range (0, numberOfEnemies):
 			var enemy = load("res://enemy/stonyMonyText.scn").instance()
 			var dirRand = randi()%3
 			spawnPos += Vector3(1, 0, dirRand - 1)
