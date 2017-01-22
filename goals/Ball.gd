@@ -30,11 +30,13 @@ func _process(deltaT):
 			return;
 			
 		if colliders[0] == goal1:
+			get_node("/root/Spatial/SamplePlayer").play("yeah")
 			set_translation(startPosition)
 			points1 += 1
 			get_parent().get_node("Control/player1Points").set_text("Points: " + str(points1))
 			lastGoaldTimeMs = OS.get_ticks_msec()
 		if colliders[0] == goal2:
+			get_node("/root/Spatial/SamplePlayer").play("yeah")
 			set_translation(startPosition)
 			points2 += 1
 			get_parent().get_node("Control/player2Points").set_text("Points: " + str(points2))

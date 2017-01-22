@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=1]
+[gd_scene load_steps=19 format=1]
 
 [ext_resource path="res://enemy/enemySpawner.gd" type="Script" id=1]
 [ext_resource path="res://wave/wave.tscn" type="PackedScene" id=2]
@@ -13,7 +13,8 @@
 [ext_resource path="res://gui/gui.tscn" type="PackedScene" id=11]
 [ext_resource path="res://sounds/smash.wav" type="Sample" id=12]
 [ext_resource path="res://sounds/wahwah.wav" type="Sample" id=13]
-[ext_resource path="res://main/music.ogg" type="AudioStream" id=14]
+[ext_resource path="res://sounds/yeah.wav" type="Sample" id=14]
+[ext_resource path="res://main/music.ogg" type="AudioStream" id=15]
 
 [sub_resource type="SphereShape" id=1]
 
@@ -68,6 +69,7 @@ srgb/enabled = false
 
 samples/smash = { "db":0.0, "pitch":1.0, "sample":ExtResource( 12 ) }
 samples/wahwah = { "db":0.0, "pitch":1.0, "sample":ExtResource( 13 ) }
+samples/yeah = { "db":0.0, "pitch":1.0, "sample":ExtResource( 14 ) }
 
 [node name="Spatial" type="Spatial"]
 
@@ -232,7 +234,7 @@ default/chorus_send = 0.0
 
 [node name="StreamPlayer" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 14 )
+stream/stream = ExtResource( 15 )
 stream/play = false
 stream/loop = false
 stream/volume_db = 0.0
