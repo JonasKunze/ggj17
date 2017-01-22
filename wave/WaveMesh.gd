@@ -27,7 +27,7 @@ func _ready():
 			add_child(box)
 			box.set_translation(pos)
 			boxes.append(box)
-	waves.applyAmplitude(boxes, 1)
+	waves.setNodes(boxes, 1)
 	self.set_process(true)
 
 var frame = 0
@@ -51,7 +51,7 @@ func _process(deltaT):
 			waves.setAmplitude(lastStompCenterIndices.x+i, lastStompCenterIndices.y, 0)
 			waves.setAmplitude(lastStompCenterIndices.x, lastStompCenterIndices.y+i, 0)
 	
-	waves.applyAmplitude(boxes, 1)
+	waves.setNodes(boxes, 1)
 
 func stomp(position, amplitudeFactor = 1):
 	var indexX = int(position.x)+sizeX/2

@@ -5,6 +5,10 @@
 #include "scene/main/node.h"
 #include "scene/3d/spatial.h"
 #include "variant.h"
+#include "object.h"
+#include "scene/resources/mesh_data_tool.h"
+#include "scene/resources/mesh.h"
+#include "scene/3d/mesh_instance.h"
 
 
 class SphericalWaves : public Reference {
@@ -23,7 +27,8 @@ public:
 	double getAmplitude(int x, int y);
 	void setAmplitude(int x, int y, double value);
 	void update(double deltaT);
-	void applyAmplitude(Vector<Variant> voxels, int index);
+	void setNodes(Vector<Variant> voxels, int index);
+	void setMesh(Object* mesh, Object* meshInstance, Object* datatool, int index);
 };
 
 #endif

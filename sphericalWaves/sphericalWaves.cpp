@@ -66,7 +66,7 @@ void SphericalWaves::update(double deltaT) {
 	}
 }
 
-void SphericalWaves::applyAmplitude(Vector<Variant> voxels, int index) {
+void SphericalWaves::setNodes(Vector<Variant> voxels, int index) {
 	for (int x = 1; x < xSize - 1; ++x) {
 		for (int y = 1; y < ySize -1; ++y) {
 			Spatial* node = (Spatial*)((Node*) voxels[x * ySize + y]);
@@ -77,10 +77,28 @@ void SphericalWaves::applyAmplitude(Vector<Variant> voxels, int index) {
 	}
 }
 
+void SphericalWaves::setMesh(Object* meshObj, Object* meshInstanceObj, Object* datatoolObj, int index) {
+	Mesh* mesh = (Mesh*) meshObj;
+	MeshInstance* meshInstance = (MeshInstance*) meshInstanceObj;
+	MeshDataTool* datatool = (MeshDataTool*) datatoolObj;
+	datatool->create_from_surface(mesh, 0);
+	mesh->surface_remove(0);
+	for (int x = 1; x < xSize - 1; ++x) {
+		for (int y = 1; y < ySize -1; ++y) {
+			Vector3 vertex = datatool->get_vertex(x * ySize + y);
+			vertex.y = currentAmplitudes[x * ySize + y];
+			datatool->set_vertex(x * ySize + y,  vertex);
+		}
+	}
+	datatool->commit_to_surface(mesh);
+	meshInstance->create_trimesh_collision();
+}
+
 void SphericalWaves::_bind_methods() {
 	ObjectTypeDB::bind_method("init",&SphericalWaves::init);
 	ObjectTypeDB::bind_method("update",&SphericalWaves::update);
-	ObjectTypeDB::bind_method("applyAmplitude",&SphericalWaves::applyAmplitude);
 	ObjectTypeDB::bind_method("getAmplitude",&SphericalWaves::getAmplitude);
 	ObjectTypeDB::bind_method("setAmplitude",&SphericalWaves::setAmplitude);
+	ObjectTypeDB::bind_method("setNodes",&SphericalWaves::setNodes);
+	ObjectTypeDB::bind_method("setMesh",&SphericalWaves::setMesh);
 }
