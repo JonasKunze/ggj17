@@ -19,6 +19,7 @@ _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.901434, 0 )
 script/script = ExtResource( 1 )
 spawnLikelihood = 0.005
+maxEnemiesPerSpawn = 8
 
 [node name="Wave" parent="." instance=ExtResource( 2 )]
 
