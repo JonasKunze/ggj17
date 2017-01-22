@@ -14,7 +14,7 @@ var maxChargeTime = 1
 var velocity = Vector3()
 var keyPressCounter = 0
 var bananaPartyStart = -100000
-var bananaPartyMaxTime = 3000
+var bananaPartyMaxTime = 2000
 
 var key_up = ""
 var key_down = ""

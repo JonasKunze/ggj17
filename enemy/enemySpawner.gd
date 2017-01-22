@@ -4,7 +4,8 @@ extends Spatial
 # var a = 2
 # var b = "textvar"
 
-export var spawnLikelihood = .005
+export var spawnLikelihood = .001
+export var bananaSpawnLikelihood = 0.005
 export var maxEnemiesPerSpawn = 8
 
 var player1=null
@@ -29,12 +30,14 @@ var item = null
 var itemHeight = 2.0
 var itemRotation = 0.0
 
+func getRandomSpawnPos():
+		return Vector3(randi()%width - width/2 - 1, itemHeight, randi()%height - height/2 - 1)
+
 func _process(deltaT):
-	if randf() < 1 and item == null:
-		var spawnPos = Vector3(randi()%width - width/2, itemHeight, randi()%height - height/2)
+	if randf() < bananaSpawnLikelihood and item == null:
 		item = load("res://items/bananas.scn").instance()
 		item.set_scale(Vector3(.3,.3,.3))
-		item.set_translation(spawnPos)
+		item.set_translation(getRandomSpawnPos())
 		add_child(item)
 	
 	if item != null:
@@ -47,7 +50,7 @@ func _process(deltaT):
 		item.set_rotation(Vector3(0,itemRotation,0))
 	
 	if randf() < spawnLikelihood:
-		var spawnPos = Vector3(randi()%width - width/2, 3, randi()%height - height/2)
+		var spawnPos = getRandomSpawnPos()
 		for i in range (0, randi()%maxEnemiesPerSpawn):
 			var enemy = load("res://enemy/stonyMonyText.scn").instance()
 			var dirRand = randi()%3
@@ -60,9 +63,10 @@ func _process(deltaT):
 	for i in range(0, enemies.size()):
 		var enemy = enemies[i]
 		var pos = enemy.get_translation()
-		if pos.y < 1: 
+		if pos.y < 1:
 			get_node("/root/Spatial/Wave").stomp(pos)
 			get_node("/root/Spatial/Wave").putStone(pos)
+			enemy.set_mode(1)
 			toBeDeleted.append(i)
 	
 	for i in range(0, toBeDeleted.size()):
