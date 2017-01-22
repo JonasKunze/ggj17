@@ -13,6 +13,8 @@ var maxChargeTime = 1
 
 var velocity = Vector3()
 var keyPressCounter = 0
+var bananaPartyStart = -100000
+var bananaPartyMaxTime = 3000
 
 var key_up = ""
 var key_down = ""
@@ -59,11 +61,14 @@ func _fixed_process(delta):
 	
 	if self.get_translation().y < -10:
 		self.set_translation(Vector3(0, 10, 0))
+	
+	if OS.get_ticks_msec() - bananaPartyStart < bananaPartyMaxTime:
+		var stompCenter = get_node("/root/Spatial/Wave").stomp(get_translation(), 0.5)
+		set_translation(stompCenter)
 		
 	if is_colliding():
 		if get_collider() == get_parent().get_node("bananas"):
-			print("bananaparty")
-			get_parent().get_node("bananas") = null
+			bananaParty()
 		
 		var n = get_collision_normal()
 		motion = n.slide(motion)
@@ -93,10 +98,14 @@ func checkStompKey():
 		stompKeyPressedTime = OS.get_ticks_msec()
 	elif  not Input.is_action_pressed(key_stomp) and stompKeyPressedTime != 0:
 		var amplitudeFactor = (OS.get_ticks_msec()-stompKeyPressedTime)/1000.0/maxChargeTime
-		print(amplitudeFactor, "!!!!!", (OS.get_ticks_msec()-stompKeyPressedTime))
+		#print(amplitudeFactor, "!!!!!", (OS.get_ticks_msec()-stompKeyPressedTime))
 		var stompCenter = get_node("/root/Spatial/Wave").stomp(get_translation(), min(1, amplitudeFactor))
 		set_translation(stompCenter)
 		stompKeyPressedTime = 0
+		
+func bananaParty():
+	get_node("/root/Spatial").destroyItem()
+	bananaPartyStart = OS.get_ticks_msec()
 		
 func _ready():
 	if playerNumber == 0:
