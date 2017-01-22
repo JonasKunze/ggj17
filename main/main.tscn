@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://enemy/enemySpawner.gd" type="Script" id=1]
 [ext_resource path="res://wave/wave.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://terrain/landscape2.msh" type="Mesh" id=9]
 [ext_resource path="res://goals/goals.tscn" type="PackedScene" id=10]
 [ext_resource path="res://gui/gui.tscn" type="PackedScene" id=11]
+[ext_resource path="res://main/music.ogg" type="AudioStream" id=12]
 
 [sub_resource type="SphereShape" id=1]
 
@@ -224,5 +225,16 @@ material/0 = null
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.19209e-07, 0 )
 
 [node name="Control" parent="." instance=ExtResource( 11 )]
+
+[node name="StreamPlayer" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 12 )
+stream/play = false
+stream/loop = false
+stream/volume_db = 0.0
+stream/autoplay = true
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
 
 
