@@ -68,6 +68,12 @@ func stomp(position, amplitudeFactor = 1):
 	lastStompCenterIndices = Vector2(indexX, indexZ)
 	return Vector3(-sizeX/2+indexX, position.y, -sizeZ/2+indexZ)
 
+func getHeightAt(position):
+	var indexX = int(position.x)+sizeX/2
+	var indexZ = int(position.z)+sizeZ/2
+	
+	return waves.getAmplitude(indexX, indexZ)
+
 func putStone(position):
 	var indexX = int(position.x)+sizeX/2
 	var indexZ = int(position.z)+sizeZ/2
