@@ -95,7 +95,7 @@ func _fixed_process(delta):
 		
 		var n = get_collision_normal()
 		motion = n.slide(motion)
-		velocity = n.slide(velocity)
+		#velocity = n.slide(velocity)
 		move(motion)
 		
 		checkStompKey()
