@@ -1,4 +1,3 @@
-https://etherpad.wikimedia.org/p/AwesomeWaveJump
 # ggj17
 
 ## How to use Better Collada Exporter in Blender
