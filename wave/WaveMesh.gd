@@ -2,6 +2,7 @@ extends Spatial
 
 export var sizeX = 2
 export var sizeZ = 2
+var meshEnabled = false
 
 var stomplitude = 10
 var springConstant = 10
@@ -11,6 +12,10 @@ var boxes = []
 var waves = SphericalWaves.new()
 var mapscene = load("res://groundBox/groundBox.tscn")
 
+var mesh = Mesh.new()
+var meshinstance = MeshInstance.new()
+var datatool = MeshDataTool.new()
+
 var lastStompTime = 0
 var lastStompCenterIndices = null
 
@@ -18,8 +23,34 @@ var stones = []
 
 export(Material) var material = null
 
-func _ready():
-	waves.init(sizeX, sizeZ, springConstant, friction)
+func initMesh():
+	var material = FixedMaterial.new()
+	material.set_parameter(material.PARAM_DIFFUSE, Color(1,0,0,1))
+	var surfTool = SurfaceTool.new()
+	surfTool.set_material(material)
+	surfTool.begin(VS.PRIMITIVE_TRIANGLES)
+	for z in range(sizeZ):
+		for x in range(sizeX):
+			var xCentered = x - sizeX / 2
+			var zCentered = z - sizeZ / 2
+			surfTool.add_normal(Vector3(0,1,0))
+			surfTool.add_vertex(Vector3(xCentered + 0, 0, zCentered + 0))
+			surfTool.add_normal(Vector3(0,1,0))
+			surfTool.add_vertex(Vector3(xCentered + 1, 0, zCentered + 0))
+			surfTool.add_normal(Vector3(0,1,0))
+			surfTool.add_vertex(Vector3(xCentered + 0, 0, zCentered + 1))
+			surfTool.add_normal(Vector3(0,1,0))
+			surfTool.add_vertex(Vector3(xCentered + 1, 0, zCentered + 1))
+			surfTool.add_normal(Vector3(0,1,0))
+			surfTool.add_vertex(Vector3(xCentered + 0, 0, zCentered + 1))
+			surfTool.add_normal(Vector3(0,1,0))
+			surfTool.add_vertex(Vector3(xCentered + 1, 0, zCentered + 0))
+	surfTool.commit(mesh)
+	meshinstance.set_mesh(mesh)
+	meshinstance.create_trimesh_collision()
+	add_child(meshinstance)
+
+func initNodes():
 	for x in range(0, sizeX):
 		for z in range(0, sizeZ):
 			var pos = Vector3(x - sizeX/2.0, 0, z - sizeZ/2.0)
@@ -28,6 +59,13 @@ func _ready():
 			box.set_translation(pos)
 			boxes.append(box)
 	waves.setNodes(boxes, 1)
+
+func _ready():
+	if meshEnabled:
+		initMesh()
+	else:
+		initNodes()
+	waves.init(sizeX, sizeZ, springConstant, friction)
 	self.set_process(true)
 
 var frame = 0
@@ -51,7 +89,10 @@ func _process(deltaT):
 			waves.setAmplitude(lastStompCenterIndices.x+i, lastStompCenterIndices.y, 0)
 			waves.setAmplitude(lastStompCenterIndices.x, lastStompCenterIndices.y+i, 0)
 	
-	waves.setNodes(boxes, 1)
+	if meshEnabled:
+		waves.setMesh(mesh, meshinstance, datatool, 1)
+	else:
+		waves.setNodes(boxes, 1)
 
 func stomp(position, amplitudeFactor = 1):
 	var indexX = int(position.x)+sizeX/2
