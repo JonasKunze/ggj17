@@ -83,12 +83,10 @@ void SphericalWaves::setMesh(Object* meshObj, Object* meshInstanceObj, Object* d
 	MeshDataTool* datatool = (MeshDataTool*) datatoolObj;
 	datatool->create_from_surface(mesh, 0);
 	mesh->surface_remove(0);
-	for (int x = 1; x < xSize - 1; ++x) {
-		for (int y = 1; y < ySize -1; ++y) {
-			Vector3 vertex = datatool->get_vertex(x * ySize + y);
-			vertex.y = currentAmplitudes[x * ySize + y];
-			datatool->set_vertex(x * ySize + y,  vertex);
-		}
+	for (int i = 0; i < datatool->get_vertex_count(); ++i) {
+		Vector3 vertex = datatool->get_vertex(i);
+		vertex.y = currentAmplitudes[(int)((vertex.x - xSize / 2.0) * ySize + vertex.z - ySize / 2.0)];
+		datatool->set_vertex(i,  vertex);
 	}
 	datatool->commit_to_surface(mesh);
 	meshInstance->create_trimesh_collision();
