@@ -82,7 +82,9 @@ func _fixed_process(delta):
 
 func _ready():
 	if playerNumber == 0:
-		get_node("hat").set_hidden(true)
+		get_node("snowman_mesh/head/hat").set_hidden(true)
+	else:
+		get_node("snowman_mesh/head/scarf").set_hidden(true)
 	#	get_node("hat").get_mesh().surface_get_material(0).set_parameter(0,Color(255,0,0))
 	#else:
 	#	get_node("hat").get_mesh().surface_get_material(0).set_parameter(0,Color(0,255,0))
