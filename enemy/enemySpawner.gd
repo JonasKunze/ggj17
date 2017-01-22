@@ -36,13 +36,6 @@ func _process(deltaT):
 		item.set_scale(Vector3(.3,.3,.3))
 		item.set_translation(spawnPos)
 		add_child(item)
-		var shape = SphereShape.new()
-		shape.set_radius(2)
-		var collision = CollisionShape.new()
-		collision.set_shape(shape)
-		item.add_child(collision)
-		item.set_collide_with_character_bodies(true)
-		item.set_collide_with_kinematic_bodies(true)
 	
 	if item != null:
 		itemRotation += deltaT * 1.2
@@ -52,14 +45,6 @@ func _process(deltaT):
 		tmpPos.y = itemHeight
 		item.set_translation(tmpPos)
 		item.set_rotation(Vector3(0,itemRotation,0))
-		
-		
-		if (item.is_colliding()):
-			print ("banana collide")
-			if item.get_collider() == player1 or item.get_collider() == player2:
-				print ("yeah!")
-				item = null
-		
 	
 	if randf() < spawnLikelihood:
 		var spawnPos = Vector3(randi()%width - width/2, 3, randi()%height - height/2)

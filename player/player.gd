@@ -61,6 +61,10 @@ func _fixed_process(delta):
 		self.set_translation(Vector3(0, 10, 0))
 		
 	if is_colliding():
+		if get_collider() == get_parent().get_node("bananas"):
+			print("bananaparty")
+			get_parent().get_node("bananas") = null
+		
 		var n = get_collision_normal()
 		motion = n.slide(motion)
 		velocity = n.slide(velocity)
