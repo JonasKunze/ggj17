@@ -135,7 +135,7 @@ func didPlayerFallDown():
 	if self.get_translation().y < -10:
 		get_node("/root/Spatial/SamplePlayer").play("wahwah")
 		self.set_translation(Vector3(0, 10, 0))
-		if playerNumber == 1:
+		if playerNumber == 0:
 			get_parent().get_node("Ball").points1 -= 1
 			get_parent().get_node("Control/player1Points").set_text("Points: " + str(get_parent().get_node("Ball").points1))
 		else:

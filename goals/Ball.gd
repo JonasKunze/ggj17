@@ -11,6 +11,8 @@ var goal2 = null
 var points1 = 0
 var points2 = 0
 
+var lastGoaldTimeMs = 0
+
 func _ready():
 	goal1 = get_node("/root/Spatial/Goals/Goal1")
 	goal2 = get_node("/root/Spatial/Goals/Goal2")
@@ -24,11 +26,16 @@ func _process(deltaT):
 	var colliders = get_colliding_bodies()
 	
 	if colliders.size() == 1:
+		if OS.get_ticks_msec() - lastGoaldTimeMs < 1000:
+			return;
+			
 		if colliders[0] == goal1:
 			set_translation(startPosition)
 			points1 += 1
 			get_parent().get_node("Control/player1Points").set_text("Points: " + str(points1))
+			lastGoaldTimeMs = OS.get_ticks_msec()
 		if colliders[0] == goal2:
 			set_translation(startPosition)
 			points2 += 1
 			get_parent().get_node("Control/player2Points").set_text("Points: " + str(points2))
+			lastGoaldTimeMs = OS.get_ticks_msec()
