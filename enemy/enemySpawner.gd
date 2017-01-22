@@ -67,3 +67,9 @@ func _process(deltaT):
 	
 	for i in range(0, toBeDeleted.size()):
 		enemies.remove(toBeDeleted[toBeDeleted.size()-i-1])
+		
+func destroyItem():
+	if item != null:
+		item.set_translation(Vector3(0, 5, 0))
+		item.queue_free()
+		item = null
