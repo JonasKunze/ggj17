@@ -4,8 +4,8 @@ export var sizeX = 2
 export var sizeZ = 2
 
 var stomplitude = 10
-var springConstant = 10
-var friction = 1.2
+var springConstant = 5
+var friction = 0.7
 
 var boxes = []
 var waves = SphericalWaves.new()
