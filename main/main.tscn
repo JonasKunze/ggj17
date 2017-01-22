@@ -16,11 +16,11 @@
 [ext_resource path="res://sounds/yeah.wav" type="Sample" id=14]
 [ext_resource path="res://main/music.ogg" type="AudioStream" id=15]
 
-[sub_resource type="SphereShape" id=1]
+[sub_resource type="SphereShape" id=4]
 
 radius = 1.0
 
-[sub_resource type="Environment" id=2]
+[sub_resource type="Environment" id=5]
 
 ambient_light/enabled = true
 ambient_light/color = Color( 0, 0, 0, 1 )
@@ -135,7 +135,7 @@ transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
 input/ray_pickable = true
 input/capture_on_drag = false
 shape_count = 1
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -163,7 +163,7 @@ startPosition = Vector3( 0, 2, 0 )
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 trigger = false
 _update_shape_index = 0
 
@@ -183,7 +183,7 @@ playerNumber = 1
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-environment = SubResource( 2 )
+environment = SubResource( 5 )
 
 [node name="landscape" type="MeshInstance" parent="."]
 

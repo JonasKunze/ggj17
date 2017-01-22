@@ -20,8 +20,9 @@ func _ready():
 
 func _process(deltaT):
 	
-	if get_translation().y < -10:
+	if get_translation().y < -10 || get_translation().y > 100:
 		set_translation(startPosition)
+		set_axis_velocity(Vector3(0, 0, 0))
 	
 	var colliders = get_colliding_bodies()
 	
