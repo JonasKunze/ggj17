@@ -25,6 +25,7 @@ var key_stomp = ""
 
 var jumped = false
 var stompKeyPressedTime = 0
+var wave = null
 
 func _input(event):
 	var snowmanAnimationPlayer = get_node("snowman_mesh/AnimationPlayer")
@@ -37,6 +38,7 @@ func _input(event):
 		snowmanAnimationPlayer.get_animation("hop").set_loop(true)
 	else:
 		snowmanAnimationPlayer.get_animation("hop").set_loop(false)
+	wave = get_node("/root/Spatial/Wave")
 
 func _fixed_process(delta):
 	if (Input.is_action_pressed(key_left)):
@@ -59,39 +61,32 @@ func _fixed_process(delta):
 	var motion = velocity * delta
 	motion = move(motion)
 	
-	if self.get_translation().y < -10:
-		self.set_translation(Vector3(0, 10, 0))
-		if playerNumber == 0:
-			get_parent().get_node("Ball").points1 -= 1
-			get_parent().get_node("Control/player1Points").set_text("Points: " + str(get_parent().get_node("Ball").points1))
-		else:
-			get_parent().get_node("Ball").points2 -= 1
-			get_parent().get_node("Control/player2Points").set_text("Points: " + str(get_parent().get_node("Ball").points2))
+	didPlayerFallDown()
 	
 	if OS.get_ticks_msec() - bananaPartyStart < bananaPartyMaxTime:
 		var stompCenter = get_node("/root/Spatial/Wave").stomp(get_translation(), 0.5)
 		set_translation(stompCenter)
 		
 	if is_colliding():
-		if get_collider() == get_parent().get_node("bananas"):
+		if get_parent().has_node("bananas") && get_collider() == get_parent().get_node("bananas"):
 			bananaParty()
 		
 		var n = get_collision_normal()
 		motion = n.slide(motion)
 		velocity = n.slide(velocity)
-		
 		move(motion)
-			
+		
 		checkStompKey()
 		
 		if Input.is_action_pressed(key_jump):
 			jumped = true
+			move(Vector3(0, 1, 0))
 			velocity.y = jumpSpeed
 		else:
 			jumped = false
 		
 		var myPos = self.get_translation()
-		var heightColl = get_node("/root/Spatial/Wave").getHeightAt(myPos)
+		var heightColl = wave.getHeightAt(myPos)
 		if abs(heightColl - myPos.y) < maxStepHeight:
 			#print("pos:", get_node("/root/Spatial/Wave").getHeightAt(self.get_translation()))
 			myPos.y = heightColl + 0.47 # insert translation y of snowman
@@ -105,13 +100,23 @@ func checkStompKey():
 	elif  not Input.is_action_pressed(key_stomp) and stompKeyPressedTime != 0:
 		var amplitudeFactor = (OS.get_ticks_msec()-stompKeyPressedTime)/1000.0/maxChargeTime
 		#print(amplitudeFactor, "!!!!!", (OS.get_ticks_msec()-stompKeyPressedTime))
-		var stompCenter = get_node("/root/Spatial/Wave").stomp(get_translation(), min(1, amplitudeFactor))
+		var stompCenter = wave.stomp(get_translation(), min(1, amplitudeFactor))
 		set_translation(stompCenter)
 		stompKeyPressedTime = 0
 		
 func bananaParty():
 	get_node("/root/Spatial").destroyItem()
 	bananaPartyStart = OS.get_ticks_msec()
+		
+func didPlayerFallDown():
+	if self.get_translation().y < -10:
+		self.set_translation(Vector3(0, 10, 0))
+		if playerNumber == 0:
+			get_parent().get_node("Ball").points1 -= 1
+			get_parent().get_node("Control/player1Points").set_text("Points: " + str(get_parent().get_node("Ball").points1))
+		else:
+			get_parent().get_node("Ball").points2 -= 1
+			get_parent().get_node("Control/player2Points").set_text("Points: " + str(get_parent().get_node("Ball").points2))
 		
 func _ready():
 	if playerNumber == 0:
