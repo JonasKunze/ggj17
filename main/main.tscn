@@ -104,7 +104,7 @@ transform/local = Transform( 1, 0, 0, 0, 0.854535, -0.519468, 0, 0.519468, 0.854
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 0.988856, 2.42551e-08, -0.148876, 0.148876, -1.61106e-07, 0.988856, 0, -1, -1.62921e-07, -9.48512, 5.23028, -0.607011 )
+transform/local = Transform( 0.988856, 2.42551e-08, -0.148876, 0.148876, -1.61106e-07, 0.988856, 0, -1, -1.62921e-07, -9.48512, 17.1306, -0.607011 )
 layers = 1
 params/enabled = true
 params/editor_only = false
@@ -112,7 +112,7 @@ params/bake_mode = 0
 params/energy = 1.0
 colors/diffuse = Color( 1, 1, 1, 1 )
 colors/specular = Color( 1, 1, 1, 1 )
-shadow/shadow = false
+shadow/shadow = true
 shadow/darkening = 0.0
 shadow/z_offset = 0.05
 shadow/z_slope_scale = 0.0
@@ -186,29 +186,7 @@ environment = SubResource( 2 )
 [node name="landscape" type="MeshInstance" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -27.1338, 0 )
-layers = 1
-geometry/visible = true
-geometry/material_override = null
-geometry/cast_shadow = 0
-geometry/receive_shadows = true
-geometry/range_begin = 0.0
-geometry/range_end = 0.0
-geometry/extra_cull_margin = 0.0
-geometry/billboard = false
-geometry/billboard_y = false
-geometry/depth_scale = false
-geometry/visible_in_all_rooms = false
-geometry/use_baked_light = true
-geometry/baked_light_tex_id = 0
-mesh/mesh = ExtResource( 9 )
-mesh/skeleton = NodePath("")
-material/0 = null
-
-[node name="landscape1" type="MeshInstance" parent="."]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -27.1338, 0 )
+transform/local = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -36.684, 0 )
 layers = 1
 geometry/visible = true
 geometry/material_override = null
