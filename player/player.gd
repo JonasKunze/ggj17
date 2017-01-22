@@ -93,16 +93,15 @@ func _fixed_process(delta):
 		if get_parent().has_node("bananas") && get_collider() == get_parent().get_node("bananas"):
 			bananaParty()
 		
-		var n = get_collision_normal()
-		motion = n.slide(motion)
-		#velocity = n.slide(velocity)
+		var collisionNormal = get_collision_normal()
+		motion = collisionNormal.slide(motion)
+		#velocity = collisionNo.slide(velocity)
 		move(motion)
 		
 		checkStompKey()
-		
-		if Input.is_action_pressed(key_jump):
+
+		if Input.is_action_pressed(key_jump) && collisionNormal.y != 0:
 			jumped = true
-			move(Vector3(0, 1, 0))
 			velocity.y = jumpSpeed
 		else:
 			jumped = false

@@ -21,8 +21,7 @@ func _ready():
 func _process(deltaT):
 	
 	if get_translation().y < -10 || get_translation().y > 100:
-		set_translation(startPosition)
-		set_axis_velocity(Vector3(0, 0, 0))
+		resetPosition()
 	
 	var colliders = get_colliding_bodies()
 	
@@ -32,13 +31,17 @@ func _process(deltaT):
 			
 		if colliders[0] == goal1:
 			get_node("/root/Spatial/SamplePlayer").play("yeah")
-			set_translation(startPosition)
+			resetPosition()
 			points1 += 1
 			get_parent().get_node("Control/player1Points").set_text("Points: " + str(points1))
 			lastGoaldTimeMs = OS.get_ticks_msec()
 		if colliders[0] == goal2:
 			get_node("/root/Spatial/SamplePlayer").play("yeah")
-			set_translation(startPosition)
+			resetPosition()
 			points2 += 1
 			get_parent().get_node("Control/player2Points").set_text("Points: " + str(points2))
 			lastGoaldTimeMs = OS.get_ticks_msec()
+
+func resetPosition():
+	set_translation(startPosition)
+	set_linear_velocity(Vector3(0, 0, 0))
