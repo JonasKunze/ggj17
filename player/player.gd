@@ -5,9 +5,11 @@ extends KinematicBody
 # var b = "textvar"
 
 export var playerNumber = 0
-export var speed = 10
-export var jumpSpeed = 4
-export var playerGravity = 9.81
+var speed = 10
+var jumpSpeed = 4
+var playerGravity = 9.81
+var maxChargeTime = 3
+
 var velocity = Vector3()
 var keyPressCounter = 0
 
@@ -19,6 +21,7 @@ var key_jump = ""
 var key_stomp = ""
 
 var jumped = false
+var stompKeyPressedTime = 0
 
 func _input(event):
 	var snowmanAnimationPlayer = get_node("snowman_mesh/AnimationPlayer")
@@ -67,9 +70,7 @@ func _fixed_process(delta):
 		
 		move(motion)
 			
-		if Input.is_action_pressed(key_stomp):
-			var stompCenter = get_node("/root/Spatial/Wave").stomp(get_translation())
-			set_translation(stompCenter)
+		checkStompKey()
 		
 		if Input.is_action_pressed(key_jump):
 			jumped = true
@@ -80,6 +81,16 @@ func _fixed_process(delta):
 	
 	velocity += playerGravity * delta *Vector3(0, -1, 0)
 
+func checkStompKey():
+	if Input.is_action_pressed(key_stomp) and stompKeyPressedTime == 0:
+		stompKeyPressedTime = OS.get_ticks_msec()
+	elif  not Input.is_action_pressed(key_stomp) and stompKeyPressedTime != 0:
+		var amplitudeFactor = (OS.get_ticks_msec()-stompKeyPressedTime)/1000.0/maxChargeTime
+		print(amplitudeFactor, "!!!!!", (OS.get_ticks_msec()-stompKeyPressedTime))
+		var stompCenter = get_node("/root/Spatial/Wave").stomp(get_translation(), min(1, amplitudeFactor))
+		set_translation(stompCenter)
+		stompKeyPressedTime = 0
+		
 func _ready():
 	if playerNumber == 0:
 		get_node("snowman_mesh/head/hat").set_hidden(true)
