@@ -14,6 +14,8 @@ var mapscene = load("res://groundBox/groundBox.tscn")
 var lastStompTime = 0
 var lastStompCenterIndices = null
 
+var stones = []
+
 export(Material) var material = null
 
 func _ready():
@@ -41,6 +43,9 @@ func _process(deltaT):
 	#	waves.setAmplitude(x, 11, 0)
 	#	waves.setAmplitude(x, 13, 0)
 	
+	for stonePos in stones:
+		waves.setAmplitude(stonePos.x, stonePos.y, 0)
+	
 	if OS.get_unix_time()-lastStompTime < 5:
 		for i in range(-1, 2):
 			waves.setAmplitude(lastStompCenterIndices.x+i, lastStompCenterIndices.y, 0)
@@ -62,3 +67,9 @@ func stomp(position):
 	lastStompTime = OS.get_unix_time()
 	lastStompCenterIndices = Vector2(indexX, indexZ)
 	return Vector3(-sizeX/2+indexX, position.y, -sizeZ/2+indexZ)
+
+func putStone(position):
+	var indexX = int(position.x)+sizeX/2
+	var indexZ = int(position.z)+sizeZ/2
+	
+	stones.append(Vector2(indexX, indexZ))
