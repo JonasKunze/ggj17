@@ -133,6 +133,7 @@ func bananaParty():
 		
 func didPlayerFallDown():
 	if self.get_translation().y < -10:
+		get_node("/root/Spatial/SamplePlayer").play("wahwah")
 		self.set_translation(Vector3(0, 10, 0))
 		if playerNumber == 1:
 			get_parent().get_node("Ball").points1 -= 1

@@ -88,6 +88,7 @@ func _process(deltaT):
 	waves.setNodes(boxes, 1)
 
 func stomp(position, amplitudeFactor = 1):
+	get_node("/root/Spatial/SamplePlayer").play("smash")
 	var indexX = int(position.x)+sizeX/2
 	var indexZ = int(position.z)+sizeZ/2
 	
