@@ -59,6 +59,12 @@ func _fixed_process(delta):
 	
 	if self.get_translation().y < -10:
 		self.set_translation(Vector3(0, 10, 0))
+		if playerNumber == 0:
+			get_parent().get_node("Ball").points1 -= 1
+			get_parent().get_node("Control/player1Points").set_text("Points: " + str(get_parent().get_node("Ball").points1))
+		else:
+			get_parent().get_node("Ball").points2 -= 1
+			get_parent().get_node("Control/player2Points").set_text("Points: " + str(get_parent().get_node("Ball").points2))
 		
 	if is_colliding():
 		if get_collider() == get_parent().get_node("bananas"):
