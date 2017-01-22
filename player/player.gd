@@ -61,6 +61,12 @@ func _fixed_process(delta):
 	
 	if self.get_translation().y < -10:
 		self.set_translation(Vector3(0, 10, 0))
+		if playerNumber == 0:
+			get_parent().get_node("Ball").points1 -= 1
+			get_parent().get_node("Control/player1Points").set_text("Points: " + str(get_parent().get_node("Ball").points1))
+		else:
+			get_parent().get_node("Ball").points2 -= 1
+			get_parent().get_node("Control/player2Points").set_text("Points: " + str(get_parent().get_node("Ball").points2))
 	
 	if OS.get_ticks_msec() - bananaPartyStart < bananaPartyMaxTime:
 		var stompCenter = get_node("/root/Spatial/Wave").stomp(get_translation(), 0.5)
