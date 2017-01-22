@@ -27,6 +27,28 @@ var jumped = false
 var stompKeyPressedTime = 0
 var wave = null
 
+func _ready():
+	wave = get_node("/root/Spatial/Wave")
+	if playerNumber == 0:
+		get_node("snowman_mesh/head/hat").set_hidden(true)
+	else:
+		get_node("snowman_mesh/head/scarf").set_hidden(true)
+	#	get_node("hat").get_mesh().surface_get_material(0).set_parameter(0,Color(255,0,0))
+	#else:
+	#	get_node("hat").get_mesh().surface_get_material(0).set_parameter(0,Color(0,255,0))
+		
+		
+	set_fixed_process(true)
+	set_process_input(true)
+	#self.get_node("Beam").get_material_override().set_shader_param("BeamColor", Vector3(0, 1, 0))
+	
+	key_up = "ui_up" + str(playerNumber)
+	key_down = "ui_down" + str(playerNumber)
+	key_left = "ui_left" + str(playerNumber)
+	key_right = "ui_right" + str(playerNumber)
+	key_jump = "ui_jump" + str(playerNumber)
+	key_stomp = "ui_stomp" + str(playerNumber)
+
 func _input(event):
 	var snowmanAnimationPlayer = get_node("snowman_mesh/AnimationPlayer")
 	if event.is_action_pressed(key_left) or event.is_action_pressed(key_right)  or event.is_action_pressed(key_up)  or event.is_action_pressed(key_down):
@@ -38,7 +60,6 @@ func _input(event):
 		snowmanAnimationPlayer.get_animation("hop").set_loop(true)
 	else:
 		snowmanAnimationPlayer.get_animation("hop").set_loop(false)
-	wave = get_node("/root/Spatial/Wave")
 
 func _fixed_process(delta):
 	if (Input.is_action_pressed(key_left)):
@@ -87,7 +108,8 @@ func _fixed_process(delta):
 		
 		var myPos = self.get_translation()
 		var heightColl = wave.getHeightAt(myPos)
-		if abs(heightColl - myPos.y) < maxStepHeight:
+
+		if myPos.y-heightColl < maxStepHeight:
 			#print("pos:", get_node("/root/Spatial/Wave").getHeightAt(self.get_translation()))
 			myPos.y = heightColl + 0.47 # insert translation y of snowman
 			self.set_translation(myPos)
@@ -118,23 +140,3 @@ func didPlayerFallDown():
 			get_parent().get_node("Ball").points2 -= 1
 			get_parent().get_node("Control/player2Points").set_text("Points: " + str(get_parent().get_node("Ball").points2))
 		
-func _ready():
-	if playerNumber == 0:
-		get_node("snowman_mesh/head/hat").set_hidden(true)
-	else:
-		get_node("snowman_mesh/head/scarf").set_hidden(true)
-	#	get_node("hat").get_mesh().surface_get_material(0).set_parameter(0,Color(255,0,0))
-	#else:
-	#	get_node("hat").get_mesh().surface_get_material(0).set_parameter(0,Color(0,255,0))
-		
-		
-	set_fixed_process(true)
-	set_process_input(true)
-	#self.get_node("Beam").get_material_override().set_shader_param("BeamColor", Vector3(0, 1, 0))
-	
-	key_up = "ui_up" + str(playerNumber)
-	key_down = "ui_down" + str(playerNumber)
-	key_left = "ui_left" + str(playerNumber)
-	key_right = "ui_right" + str(playerNumber)
-	key_jump = "ui_jump" + str(playerNumber)
-	key_stomp = "ui_stomp" + str(playerNumber)
