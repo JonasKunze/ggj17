@@ -56,6 +56,9 @@ func _fixed_process(delta):
 	var motion = velocity * delta
 	motion = move(motion)
 	
+	if self.get_translation().y < -10:
+		self.set_translation(Vector3(0, 10, 0))
+		
 	if is_colliding():
 		var n = get_collision_normal()
 		motion = n.slide(motion)

@@ -17,6 +17,10 @@ func _ready():
 	self.set_process(true)
 
 func _process(deltaT):
+	
+	if get_translation().y < -10:
+		set_translation(startPosition)
+	
 	var colliders = get_colliding_bodies()
 	
 	if colliders.size() == 1:
