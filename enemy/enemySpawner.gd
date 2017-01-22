@@ -56,6 +56,7 @@ func _process(deltaT):
 			var dirRand = randi()%3
 			spawnPos += Vector3(1, 0, dirRand - 1)
 			enemy.set_translation(spawnPos)
+			enemy.set_rotation(Vector3(0,-PI*.5,0))
 			enemies.append(enemy)
 			add_child(enemy)
 	
