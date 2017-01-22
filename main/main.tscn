@@ -163,11 +163,11 @@ transform/local = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 
 [node name="Player1" parent="." instance=ExtResource( 7 )]
 
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, 0 )
+transform/local = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 1, 0 )
 
 [node name="Player2" parent="." instance=ExtResource( 7 )]
 
-transform/local = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 1, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, 0 )
 playerNumber = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
