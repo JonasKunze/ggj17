@@ -20,7 +20,7 @@ func _process(deltaT):
 	if randf() < spawnLikelihood:
 		var width = get_node("/root/Spatial/Wave").sizeX
 		var height = get_node("/root/Spatial/Wave").sizeZ
-		var spawnPos = Vector3(randi()%width - width/2, 30, randi()%height - height/2)
+		var spawnPos = Vector3(randi()%width - width/2, 3, randi()%height - height/2)
 		for i in range (0, randi()%maxEnemiesPerSpawn):
 			var enemy = load("res://enemy/stonyMonyText.scn").instance()
 			var dirRand = randi()%3
@@ -29,16 +29,14 @@ func _process(deltaT):
 			enemies.append(enemy)
 			add_child(enemy)
 	
-	for enemy in enemies:
+	var toBeDeleted = []
+	for i in range(0, enemies.size()):
+		var enemy = enemies[i]
 		var pos = enemy.get_translation()
-		if pos.y > 1: 
-			pos.y += deltaT * enemy.velocity.y
-			if pos.y < 1: 
-				pos.y = 1
-				enemy.velocity.y = 0
-				get_node("/root/Spatial/Wave").stomp(pos)
-				get_node("/root/Spatial/Wave").putStone(pos)
-			else:
-				enemy.velocity.y -= deltaT * 10
-			
-		enemy.set_translation(pos)
+		if pos.y < 1: 
+			get_node("/root/Spatial/Wave").stomp(pos)
+			get_node("/root/Spatial/Wave").putStone(pos)
+			toBeDeleted.append(i)
+	
+	for i in range(0, toBeDeleted.size()):
+		enemies.remove(toBeDeleted[toBeDeleted.size()-i-1])

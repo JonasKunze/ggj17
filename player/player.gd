@@ -8,7 +8,7 @@ export var playerNumber = 0
 var speed = 10
 var jumpSpeed = 4
 var playerGravity = 9.81
-var maxChargeTime = 3
+var maxChargeTime = 1
 
 var velocity = Vector3()
 var keyPressCounter = 0
