@@ -38,7 +38,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 10.0
 margin/top = 10.0
-margin/right = 50.0
+margin/right = 66.0
 margin/bottom = 24.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Points: 0"
@@ -48,13 +48,15 @@ max_lines_visible = -1
 
 [node name="player2Points" type="Label" parent="."]
 
+anchor/left = 3
+anchor/right = 3
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 958.0
+margin/left = -938.0
 margin/top = 10.0
-margin/right = 1014.0
+margin/right = -994.0
 margin/bottom = 24.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Points: 0"
