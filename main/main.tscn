@@ -76,7 +76,7 @@ maxEnemiesPerSpawn = 8
 
 editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 0.854457, 0.519448, 0, -0.519448, 0.854501, 0, 29.5753, 38.6108 )
+transform/local = Transform( 1, 0, 0, 0, 0.70708, 0.707106, 0, -0.70708, 0.707106, 0, 29.5753, 38.6108 )
 projection = 0
 fov = 60.0
 near = 0.1
