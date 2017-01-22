@@ -3,16 +3,16 @@
 [ext_resource path="res://enemy/enemySpawner.gd" type="Script" id=1]
 [ext_resource path="res://wave/wave.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Camera.gd" type="Script" id=3]
-[ext_resource path="res://goals/Ball.gd" type="Script" id=4]
-[ext_resource path="res://enemy/pumpkin.scn" type="PackedScene" id=5]
-[ext_resource path="res://snow/snow.tscn" type="PackedScene" id=6]
+[ext_resource path="res://snow/snow.tscn" type="PackedScene" id=4]
+[ext_resource path="res://goals/Ball.gd" type="Script" id=5]
+[ext_resource path="res://enemy/pumpkin.scn" type="PackedScene" id=6]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://terrain/skybox.cbm" type="CubeMap" id=8]
 [ext_resource path="res://terrain/landscape2.msh" type="Mesh" id=9]
 [ext_resource path="res://goals/goals.tscn" type="PackedScene" id=10]
 [ext_resource path="res://gui/gui.tscn" type="PackedScene" id=11]
 
-[sub_resource type="SphereShape" id=3]
+[sub_resource type="SphereShape" id=1]
 
 radius = 1.0
 
@@ -87,6 +87,10 @@ h_offset = 0.0
 v_offset = 0.0
 script/script = ExtResource( 3 )
 
+[node name="Snow" parent="Camera" instance=ExtResource( 4 )]
+
+transform/local = Transform( 1, 0, 0, 0, 0.854535, -0.519468, 0, 0.519468, 0.854491, 0, 4.21175, -8.83102 )
+
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
@@ -118,7 +122,7 @@ transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
 input/ray_pickable = true
 input/capture_on_drag = false
 shape_count = 1
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -139,24 +143,20 @@ velocity/linear = Vector3( 0, 0, 0 )
 velocity/angular = Vector3( 0, 0, 0 )
 damp_override/linear = -1.0
 damp_override/angular = -1.0
-script/script = ExtResource( 4 )
+script/script = ExtResource( 5 )
 startPosition = Vector3( 0, 2, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Ball"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="pumpkin" parent="Ball" instance=ExtResource( 5 )]
+[node name="pumpkin" parent="Ball" instance=ExtResource( 6 )]
 
 transform/local = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
-
-[node name="Snow" parent="." instance=ExtResource( 6 )]
-
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28.5868, 28.8769 )
 
 [node name="Player1" parent="." instance=ExtResource( 7 )]
 
