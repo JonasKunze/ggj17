@@ -82,7 +82,7 @@ func _fixed_process(delta):
 		var myPos = self.get_translation()
 		var heightColl = get_node("/root/Spatial/Wave").getHeightAt(myPos)
 		if abs(heightColl - myPos.y) < maxStepHeight:
-			print("pos:", get_node("/root/Spatial/Wave").getHeightAt(self.get_translation()))
+			#print("pos:", get_node("/root/Spatial/Wave").getHeightAt(self.get_translation()))
 			myPos.y = heightColl + 0.47 # insert translation y of snowman
 			self.set_translation(myPos)
 	
