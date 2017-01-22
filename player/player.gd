@@ -62,6 +62,7 @@ func _input(event):
 		snowmanAnimationPlayer.get_animation("hop").set_loop(false)
 
 func _fixed_process(delta):
+	if get_node("/root/Spatial/Control").finished: return
 	if (Input.is_action_pressed(key_left)):
 		velocity.x = -speed
 		set_rotation(Vector3(0,PI,0))

@@ -2,7 +2,6 @@ extends Spatial
 
 export var sizeX = 2
 export var sizeZ = 2
-var meshEnabled = false
 
 var stomplitude = 10
 var springConstant = 10
@@ -61,10 +60,7 @@ func initNodes():
 	waves.setNodes(boxes, 1)
 
 func _ready():
-	if meshEnabled:
-		initMesh()
-	else:
-		initNodes()
+	initNodes()
 	waves.init(sizeX, sizeZ, springConstant, friction)
 	self.set_process(true)
 
@@ -89,10 +85,7 @@ func _process(deltaT):
 			waves.setAmplitude(lastStompCenterIndices.x+i, lastStompCenterIndices.y, 0)
 			waves.setAmplitude(lastStompCenterIndices.x, lastStompCenterIndices.y+i, 0)
 	
-	if meshEnabled:
-		waves.setMesh(mesh, meshinstance, datatool, 1)
-	else:
-		waves.setNodes(boxes, 1)
+	waves.setNodes(boxes, 1)
 
 func stomp(position, amplitudeFactor = 1):
 	var indexX = int(position.x)+sizeX/2
