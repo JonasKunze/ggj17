@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://enemy/enemySpawner.gd" type="Script" id=1]
 [ext_resource path="res://wave/wave.tscn" type="PackedScene" id=2]
@@ -7,11 +7,58 @@
 [ext_resource path="res://enemy/pumpkin.scn" type="PackedScene" id=5]
 [ext_resource path="res://snow/snow.tscn" type="PackedScene" id=6]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://goals/goals.tscn" type="PackedScene" id=8]
+[ext_resource path="res://terrain/skybox.cbm" type="CubeMap" id=8]
+[ext_resource path="res://terrain/landscape2.msh" type="Mesh" id=9]
+[ext_resource path="res://goals/goals.tscn" type="PackedScene" id=10]
 
 [sub_resource type="BoxShape" id=1]
 
 extents = Vector3( 1, 1, 1 )
+
+[sub_resource type="Environment" id=2]
+
+ambient_light/enabled = true
+ambient_light/color = Color( 0, 0, 0, 1 )
+ambient_light/energy = 1.0
+fxaa/enabled = false
+background/mode = 4
+background/color = Color( 1, 1, 1, 1 )
+background/cubemap = ExtResource( 8 )
+background/energy = 1.0
+background/scale = 1.0
+background/glow = 0.0
+background/canvas_max_layer = null
+glow/enabled = false
+glow/blur_passes = 1
+glow/blur_scale = 1
+glow/blur_strength = 1
+glow/blur_blend_mode = null
+glow/bloom = 0.0
+glow/bloom_treshold = 0.5
+dof_blur/enabled = false
+dof_blur/blur_passes = 1
+dof_blur/begin = 100.0
+dof_blur/range = 10.0
+hdr/enabled = false
+hdr/tonemapper = 0
+hdr/exposure = 0.4
+hdr/white = 1.0
+hdr/glow_treshold = 0.95
+hdr/glow_scale = 0.2
+hdr/min_luminance = 0.4
+hdr/max_luminance = 8.0
+hdr/exposure_adj_speed = 0.5
+fog/enabled = false
+fog/begin = 100.0
+fog/begin_color = Color( 0, 0, 0, 1 )
+fog/end_color = Color( 0, 0, 0, 1 )
+fog/attenuation = 1.0
+fog/bg = true
+bcs/enabled = false
+bcs/brightness = 1.0
+bcs/contrast = 1.0
+bcs/saturation = 1.0
+srgb/enabled = false
 
 [node name="Spatial" type="Spatial"]
 
@@ -26,7 +73,7 @@ maxEnemiesPerSpawn = 8
 [node name="Camera" type="Camera" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 0.766, 0.642787, 0, -0.64278, 0.766044, 0, 30, 38.6108 )
+transform/local = Transform( 1, 0, 0, 0, 0.854457, 0.519448, 0, -0.519448, 0.854501, 0, 29.5753, 38.6108 )
 projection = 0
 fov = 60.0
 near = 0.1
@@ -116,7 +163,34 @@ transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0121193, 1.1106, 4.81
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0105934, 1.27198, -3.48092 )
 playerNumber = 1
 
-[node name="Goals" parent="." instance=ExtResource( 8 )]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+environment = SubResource( 2 )
+
+[node name="landscape" type="MeshInstance" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -27.1338, 0 )
+layers = 1
+geometry/visible = true
+geometry/material_override = null
+geometry/cast_shadow = 0
+geometry/receive_shadows = true
+geometry/range_begin = 0.0
+geometry/range_end = 0.0
+geometry/extra_cull_margin = 0.0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = true
+geometry/baked_light_tex_id = 0
+mesh/mesh = ExtResource( 9 )
+mesh/skeleton = NodePath("")
+material/0 = null
+
+[node name="Goals" parent="." instance=ExtResource( 10 )]
 
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.19209e-07, 0 )
 
