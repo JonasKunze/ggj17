@@ -53,7 +53,7 @@ func _process(deltaT):
 	
 	waves.applyAmplitude(boxes, 1)
 
-func stomp(position):
+func stomp(position, amplitudeFactor = 1):
 	var indexX = int(position.x)+sizeX/2
 	var indexZ = int(position.z)+sizeZ/2
 	
@@ -63,7 +63,7 @@ func stomp(position):
 				continue
 			var r = sqrt(x*x+z*z)
 			if abs(r-4) < 0.5:
-				waves.setAmplitude(indexX+x, indexZ+z, stomplitude)
+				waves.setAmplitude(indexX+x, indexZ+z, stomplitude*amplitudeFactor)
 	lastStompTime = OS.get_unix_time()
 	lastStompCenterIndices = Vector2(indexX, indexZ)
 	return Vector3(-sizeX/2+indexX, position.y, -sizeZ/2+indexZ)
