@@ -226,6 +226,8 @@ transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.19209e-07, 0 )
 
 [node name="Control" parent="." instance=ExtResource( 11 )]
 
+countdown = 60
+
 [node name="StreamPlayer" type="StreamPlayer" parent="."]
 
 stream/stream = ExtResource( 12 )
