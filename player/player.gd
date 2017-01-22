@@ -60,12 +60,11 @@ func _fixed_process(delta):
 		if n.y==0:
 			motion += Vector3(0, 0.1, 0)
 		
-		if self.get_translation().y < 0:
+		if self.get_translation().y < 0.1:
 			var newPos = self.get_translation()
 			newPos.y = 0
 			self.set_translation(newPos)
 		
-		motion += Vector3(0, 0.1, 0)
 		move(motion)
 			
 		if Input.is_action_pressed(key_stomp):
@@ -82,6 +81,13 @@ func _fixed_process(delta):
 	velocity += playerGravity * delta *Vector3(0, -1, 0)
 
 func _ready():
+	if playerNumber == 0:
+		get_node("hat").set_hidden(true)
+	#	get_node("hat").get_mesh().surface_get_material(0).set_parameter(0,Color(255,0,0))
+	#else:
+	#	get_node("hat").get_mesh().surface_get_material(0).set_parameter(0,Color(0,255,0))
+		
+		
 	set_fixed_process(true)
 	set_process_input(true)
 	#self.get_node("Beam").get_material_override().set_shader_param("BeamColor", Vector3(0, 1, 0))
