@@ -20,3 +20,4 @@ enemy/images/
 enemy/front.tex
 enemy/engine/
 ImmediateGeometry.tscn
+main/skybox.tres.res
